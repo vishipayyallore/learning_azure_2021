@@ -1,16 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using FirstSample30.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-// using Microsoft.EntityFrameworkCore.
 
 namespace FirstSample30
 {
@@ -31,7 +25,7 @@ namespace FirstSample30
             services.AddDbContext<CollegeDbContext>(o => o.UseCosmos(
                 accountEndpoint: "https://localhost:8081",
                 accountKey: "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==",
-                databaseName:"professors"
+                databaseName: "webapidemodb"
                 ));
         }
 
