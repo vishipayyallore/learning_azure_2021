@@ -1,6 +1,7 @@
 ﻿using FirstSample30.Entities;
 using FirstSample30.Persistence;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,10 @@ namespace FirstSample30.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Professor>> Get()
         {
-            var professors = _collegeDbContext.Professors.ToList();
+            var professors = _collegeDbContext
+                                .Professors
+                                .Include(row => row.Students)
+                                .ToList();
 
             return Ok(professors);
         }
