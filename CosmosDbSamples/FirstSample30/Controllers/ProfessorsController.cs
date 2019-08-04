@@ -3,6 +3,7 @@ using FirstSample30.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -32,7 +33,18 @@ namespace FirstSample30.Controllers
 
             return Ok(professors);
         }
-    }
 
+        [HttpGet("{id}")]
+        public ActionResult<Professor> GetProfessorById(Guid id)
+        {
+            var professor = _collegeDbContext
+                                .Professors
+                                .Where(row => row.ProfessorId == id)
+                                .Include(row => row.Students);
+
+            return Ok(professor);
+        }
+
+    }
 
 }
