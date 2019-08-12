@@ -6,6 +6,12 @@ namespace FirstSample30.Entities
 {
     public class Professor
     {
+
+        public Professor()
+        {
+            Students = new List<Student>();
+        }
+
         [Key]
         public Guid ProfessorId { get; set; }
 
