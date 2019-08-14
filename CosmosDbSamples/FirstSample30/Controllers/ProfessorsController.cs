@@ -15,21 +15,37 @@ namespace FirstSample30.Controllers
     {
         private readonly CollegeDbContext _collegeDbContext;
         private readonly ILogger<ProfessorsController> _logger;
+        private readonly NoSqlDbContext _noSqlDbContext;
 
-        public ProfessorsController(CollegeDbContext collegeDbContext, ILogger<ProfessorsController> logger)
+        public ProfessorsController(CollegeDbContext collegeDbContext, ILogger<ProfessorsController> logger, NoSqlDbContext noSqlDbContext)
         {
             _collegeDbContext = collegeDbContext;
             _logger = logger;
+            _noSqlDbContext = noSqlDbContext;
         }
 
 
+        //[HttpGet]
+        //public ActionResult<IEnumerable<BookListNoSql>> Get()
+        //{
+        //    var professors = _noSqlDbContext
+        //                            .Books
+        //                            .AsNoTracking()
+        //                            .OrderByDescending(x => x.BookId)
+        //                            .ToList();
+
+        //    return Ok(professors);
+        //}
+
+
         [HttpGet]
-        public ActionResult<Professor> Get()
+        public ActionResult<IEnumerable<Professor>> Get()
         {
             var professors = _collegeDbContext
                                 .Professors
-                                .FirstOrDefault();
-                                
+                                    .AsNoTracking()
+                                    .OrderByDescending(x => x.ProfessorId)
+                                    .ToList();
 
             return Ok(professors);
         }
@@ -39,8 +55,7 @@ namespace FirstSample30.Controllers
         {
             var professor = _collegeDbContext
                                 .Professors
-                                .Where(row => row.ProfessorId == id)
-                                .Include(row => row.Students);
+                                .Where(row => row.ProfessorId == id);
 
             return Ok(professor);
         }

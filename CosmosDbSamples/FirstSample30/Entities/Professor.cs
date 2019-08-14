@@ -9,7 +9,6 @@ namespace FirstSample30.Entities
 
         public Professor()
         {
-            Students = new List<Student>();
         }
 
         [Key]
@@ -25,7 +24,6 @@ namespace FirstSample30.Entities
 
         public bool IsPhd { get; set; }
 
-        public ICollection<Student> Students { get; set; } = new List<Student>();
 
     }
 
