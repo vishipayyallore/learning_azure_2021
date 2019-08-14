@@ -6,11 +6,6 @@ namespace FirstSample30.Entities
 {
     public class Professor
     {
-
-        public Professor()
-        {
-        }
-
         [Key]
         public Guid ProfessorId { get; set; }
 
@@ -23,8 +18,6 @@ namespace FirstSample30.Entities
         public decimal Salary { get; set; }
 
         public bool IsPhd { get; set; }
-
-
     }
 
 }
