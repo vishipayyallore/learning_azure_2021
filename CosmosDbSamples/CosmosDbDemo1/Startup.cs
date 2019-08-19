@@ -28,6 +28,12 @@ namespace CosmosDbDemo1
                   Configuration["CosmosUrl"] ?? Configuration["endpoint"],
                   Configuration["CosmosKey"] ?? Configuration["authKey"],
                   Configuration["database"]));
+
+            services.AddDbContext<CollegeDbContext>(options =>
+                options.UseCosmos(
+                    Configuration["CosmosUrl"] ?? Configuration["endpoint"],
+                  Configuration["CosmosKey"] ?? Configuration["authKey"],
+                  Configuration["database1"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
