@@ -6,10 +6,8 @@ namespace CosmosDbDemo1.Persistence
 
     public class CollegeDbContext : DbContext
     {
-        public CollegeDbContext(DbContextOptions<CollegeDbContext> options) : base(options)
-        {
-        }
-
+        public CollegeDbContext(DbContextOptions<CollegeDbContext> options) 
+            : base(options)  { }
 
         public DbSet<Professor> Professors { get; set; }
 
