@@ -3,6 +3,7 @@ using CosmosDbDemo1.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,26 +11,38 @@ namespace CosmosDbDemo1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfessorsController : ControllerBase
+    public class ProfessorsV1Controller : ControllerBase
     {
 
         private readonly ILogger<ProfessorsController> _logger;
-        private readonly NoSqlDbContext _noSqlDbContext;
+        private readonly CollegeDbContext _collegeDbContext;
 
-        public ProfessorsController(ILogger<ProfessorsController> logger, NoSqlDbContext noSqlDbContext)
+        public ProfessorsV1Controller(ILogger<ProfessorsController> logger, CollegeDbContext collegeDbContext)
         {
             _logger = logger;
-            _noSqlDbContext = noSqlDbContext;
+            _collegeDbContext = collegeDbContext;
         }
 
 
         [HttpGet]
-        public ActionResult<IEnumerable<BookListNoSql>> Get()
+        public ActionResult<IEnumerable<Professor>> Get()
         {
-            var professors = _noSqlDbContext
-                                    .Books
+
+
+            var newProfessor = new Professor
+            {
+                ProfessorId = Guid.NewGuid()
+            };
+
+            var np = _collegeDbContext.Set<Professor>();
+            np.Add(newProfessor);
+            _collegeDbContext.Add<Professor>(newProfessor);
+            _collegeDbContext.SaveChanges();
+
+            var professors = _collegeDbContext
+                                    .Professors
                                     .AsNoTracking()
-                                    .OrderByDescending(x => x.BookId)
+                                    .OrderByDescending(x => x.ProfessorId)
                                     .ToList();
 
             return Ok(professors);
