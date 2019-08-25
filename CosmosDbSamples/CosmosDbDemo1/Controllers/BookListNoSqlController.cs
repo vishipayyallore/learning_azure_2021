@@ -10,13 +10,13 @@ namespace CosmosDbDemo1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProfessorsController : ControllerBase
+    public class BookListNoSqlController : ControllerBase
     {
 
-        private readonly ILogger<ProfessorsController> _logger;
+        private readonly ILogger<BookListNoSqlController> _logger;
         private readonly NoSqlDbContext _noSqlDbContext;
 
-        public ProfessorsController(ILogger<ProfessorsController> logger, NoSqlDbContext noSqlDbContext)
+        public BookListNoSqlController(ILogger<BookListNoSqlController> logger, NoSqlDbContext noSqlDbContext)
         {
             _logger = logger;
             _noSqlDbContext = noSqlDbContext;
@@ -26,13 +26,13 @@ namespace CosmosDbDemo1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<BookListNoSql>> Get()
         {
-            var professors = _noSqlDbContext
+            var books = _noSqlDbContext
                                     .Books
                                     .AsNoTracking()
                                     .OrderByDescending(x => x.BookId)
                                     .ToList();
 
-            return Ok(professors);
+            return Ok(books);
         }
 
     }

@@ -14,10 +14,10 @@ namespace CosmosDbDemo1.Controllers
     public class ProfessorsV1Controller : ControllerBase
     {
 
-        private readonly ILogger<ProfessorsController> _logger;
+        private readonly ILogger<ProfessorsV1Controller> _logger;
         private readonly CollegeDbContext _collegeDbContext;
 
-        public ProfessorsV1Controller(ILogger<ProfessorsController> logger, CollegeDbContext collegeDbContext)
+        public ProfessorsV1Controller(ILogger<ProfessorsV1Controller> logger, CollegeDbContext collegeDbContext)
         {
             _logger = logger;
             _collegeDbContext = collegeDbContext;
