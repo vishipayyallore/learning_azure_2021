@@ -36,7 +36,7 @@ namespace CosmosDbDemo1.Controllers
 
             var np = _collegeDbContext.Set<Professor>();
             np.Add(newProfessor);
-            _collegeDbContext.Add<Professor>(newProfessor);
+            _collegeDbContext.Professors.Add(newProfessor);
             _collegeDbContext.SaveChanges();
 
             var professors = _collegeDbContext
