@@ -1,7 +1,7 @@
-az resource list --output table
-
 # To display the list of Providers
 az provider list --output table
+
+az resource list --output table
 
 az group list --output table
 az group show --name ResourceGroupName --output table
