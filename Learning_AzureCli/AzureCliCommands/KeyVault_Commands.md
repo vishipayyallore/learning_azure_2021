@@ -6,7 +6,7 @@ az login
 az account list --output table
 az account set -s "Your Subscription Name"
 
-# Azure Key Vault 
+## Azure Key Vault 
 
 az group create --name "resource-group-name" --location eastus
 az keyvault create --name "simple-keyvalut" --resource-group "delete-me" --location eastus
