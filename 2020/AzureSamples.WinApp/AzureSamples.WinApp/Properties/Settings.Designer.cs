@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AzureSamples.Properties
+namespace AzureSamples.WinApp.Properties
 {
 
 

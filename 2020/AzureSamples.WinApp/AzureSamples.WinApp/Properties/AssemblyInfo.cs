@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AzureSamples")]
+[assembly: AssemblyTitle("AzureSamples.WinApp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AzureSamples")]
+[assembly: AssemblyProduct("AzureSamples.WinApp")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e3e741c1-1ad3-4d5b-a8c9-95ed09720acc")]
+[assembly: Guid("e64e69e8-7afa-4adf-b1f3-a0c141d6777a")]
 
 // Version information for an assembly consists of the following four values:
 //

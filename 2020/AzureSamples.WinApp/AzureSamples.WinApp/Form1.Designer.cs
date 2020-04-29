@@ -1,4 +1,4 @@
-﻿namespace AzureSamples
+﻿namespace AzureSamples.WinApp
 {
     partial class Form1
     {

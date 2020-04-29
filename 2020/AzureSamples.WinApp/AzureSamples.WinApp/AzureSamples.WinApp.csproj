@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E3E741C1-1AD3-4D5B-A8C9-95ED09720ACC}</ProjectGuid>
+    <ProjectGuid>{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>AzureSamples</RootNamespace>
-    <AssemblyName>AzureSamples</AssemblyName>
+    <RootNamespace>AzureSamples.WinApp</RootNamespace>
+    <AssemblyName>AzureSamples.WinApp</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
