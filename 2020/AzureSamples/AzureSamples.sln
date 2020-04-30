@@ -3,9 +3,47 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{668CCCC4-2CAC-4D47-84A4-206886DD0ED5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9D0E857D-150F-4E14-B847-BD9AA469DA36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{C4EBD433-BEC4-4BBA-819E-2DC537D0E947}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzScripts", "AzScripts", "{423363FD-9B2C-4972-901C-FF1718A62343}"
+	ProjectSection(SolutionItems) = preProject
+		AzScripts\AzureRedisCacheCommands.md = AzScripts\AzureRedisCacheCommands.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{715EEBB9-8DB3-4941-B311-9417CABC4DC1}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSamples.WinApp", "Source\AzureSamples.WinApp\AzureSamples.WinApp.csproj", "{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureSamples.Core31WpfApp", "Source\AzureSamples.Core31WpfApp\AzureSamples.Core31WpfApp.csproj", "{273CC881-B871-49CE-A384-67AAFC5C66DC}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A} = {668CCCC4-2CAC-4D47-84A4-206886DD0ED5}
+		{273CC881-B871-49CE-A384-67AAFC5C66DC} = {668CCCC4-2CAC-4D47-84A4-206886DD0ED5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AD666D1-8611-4ADF-B800-793D660A7C95}
