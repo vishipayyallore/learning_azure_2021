@@ -9,9 +9,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9D0E857D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{C4EBD433-BEC4-4BBA-819E-2DC537D0E947}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzScripts", "AzScripts", "{423363FD-9B2C-4972-901C-FF1718A62343}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureCliScripts", "AzureCliScripts", "{423363FD-9B2C-4972-901C-FF1718A62343}"
 	ProjectSection(SolutionItems) = preProject
-		AzScripts\AzureRedisCacheCommands.md = AzScripts\AzureRedisCacheCommands.md
+		AzureCliScripts\AccountLogin_And_Set.md = AzureCliScripts\AccountLogin_And_Set.md
+		AzureCliScripts\K8s_commands.md = AzureCliScripts\K8s_commands.md
+		AzureCliScripts\KeyVault_Commands.md = AzureCliScripts\KeyVault_Commands.md
+		AzureCliScripts\OtherCommands.md = AzureCliScripts\OtherCommands.md
+		AzureCliScripts\RedisCache_Commands.md = AzureCliScripts\RedisCache_Commands.md
+		AzureCliScripts\ResourceRelated.md = AzureCliScripts\ResourceRelated.md
+		AzureCliScripts\WebApps_RelatedCommands.md = AzureCliScripts\WebApps_RelatedCommands.md
+		AzureCliScripts\WebSiteRelatedCommands.md = AzureCliScripts\WebSiteRelatedCommands.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{715EEBB9-8DB3-4941-B311-9417CABC4DC1}"
