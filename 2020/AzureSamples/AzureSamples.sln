@@ -17,12 +17,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureCliScripts", "AzureCli
 		AzureCliScripts\OtherCommands.md = AzureCliScripts\OtherCommands.md
 		AzureCliScripts\RedisCache_Commands.md = AzureCliScripts\RedisCache_Commands.md
 		AzureCliScripts\ResourceRelated.md = AzureCliScripts\ResourceRelated.md
+		ServicePrincipal_Commands.md = ServicePrincipal_Commands.md
 		AzureCliScripts\WebApps_RelatedCommands.md = AzureCliScripts\WebApps_RelatedCommands.md
 		AzureCliScripts\WebSiteRelatedCommands.md = AzureCliScripts\WebSiteRelatedCommands.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{715EEBB9-8DB3-4941-B311-9417CABC4DC1}"
 	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
