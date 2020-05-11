@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AzureCliScripts", "AzureCliScripts", "{423363FD-9B2C-4972-901C-FF1718A62343}"
 	ProjectSection(SolutionItems) = preProject
 		AzureCliScripts\AccountLogin_And_Set.md = AzureCliScripts\AccountLogin_And_Set.md
+		ARM_Template_Commands.md = ARM_Template_Commands.md
 		AzureCliScripts\K8s_commands.md = AzureCliScripts\K8s_commands.md
 		AzureCliScripts\KeyVault_Commands.md = AzureCliScripts\KeyVault_Commands.md
 		AzureCliScripts\OtherCommands.md = AzureCliScripts\OtherCommands.md
