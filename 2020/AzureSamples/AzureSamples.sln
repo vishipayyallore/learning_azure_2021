@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureSamples.WinApp", "Sour
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureSamples.Core31WpfApp", "Source\AzureSamples.Core31WpfApp\AzureSamples.Core31WpfApp.csproj", "{273CC881-B871-49CE-A384-67AAFC5C66DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.CosmosDbDemo", "Source\Simple.CosmosDbDemo\Simple.CosmosDbDemo.csproj", "{9F765C18-2920-4EB8-97D3-92CF1B65C917}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{273CC881-B871-49CE-A384-67AAFC5C66DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F765C18-2920-4EB8-97D3-92CF1B65C917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F765C18-2920-4EB8-97D3-92CF1B65C917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F765C18-2920-4EB8-97D3-92CF1B65C917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F765C18-2920-4EB8-97D3-92CF1B65C917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E64E69E8-7AFA-4ADF-B1F3-A0C141D6777A} = {668CCCC4-2CAC-4D47-84A4-206886DD0ED5}
 		{273CC881-B871-49CE-A384-67AAFC5C66DC} = {668CCCC4-2CAC-4D47-84A4-206886DD0ED5}
+		{9F765C18-2920-4EB8-97D3-92CF1B65C917} = {668CCCC4-2CAC-4D47-84A4-206886DD0ED5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0AD666D1-8611-4ADF-B800-793D660A7C95}
