@@ -18,7 +18,12 @@ namespace firststoragedemo
                             .AddJsonFile("appsettings.json")
                             .AddUserSecrets("62799a27-409a-4c9b-82d7-0d33627868f9")
                             .Build();
-            
+
+            for (int iCtr = 0; iCtr <= 99999; iCtr++)
+            {
+                Console.WriteLine($"{DateTime.UtcNow}");
+            }
+
             if (!CloudStorageAccount.TryParse(_config["StorageAccountConnectionString"], out CloudStorageAccount storageAccount))
             {
                 Console.WriteLine("Unable to parse connection string");
@@ -41,6 +46,6 @@ namespace firststoragedemo
 
             Console.WriteLine("Hello World!");
 
-        } 
+        }
     }
 }
