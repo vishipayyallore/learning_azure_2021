@@ -2,15 +2,10 @@
 $SubscriptionName = "Visual Studio Professional Subscription"
 $RGName = "rg-az204-azwindows-dev-001"
 $LocationName = "EastUS"
-$BaseName = "winapr2021"
-$VmName = "vm$($BaseName)" ##### Windows computer name cannot be more than 15 characters long
-$VNetName = "vnet$($BaseName)"
-$SubNetName = "default"
-$NsgName = "nsg$($BaseName)"
-$PublicDns = "publicdns$($BaseName)$(Get-Random)"
-$PortsToOpen = 80,3389
+$BaseName = "vmapr2021"
+$VmName = "win$($BaseName)" ##### Windows computer name cannot be more than 15 characters long
+$PortToOpen = 80
 $username = "demouser"
-$password = "NoPassword@123$%^&*"
 $ImageName = "Win2019Datacenter" 
 
 ##### Login
@@ -24,10 +19,10 @@ az group list --output table
 az group create --name $RGName --location $LocationName
 
 ##### Virtual Machine
-az vm create --resource-group $RGName --name $VmName --image win2016datacenter --authentication-type password --admin-username $username --admin-password "NoPassword@123$%^&*"
+az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username
 
 ##### Opending the ports
-az vm open-port --resource-group $RGName --name $VmName --port 80 --priority 900
+az vm open-port --resource-group $RGName --name $VmName --port $PortToOpen --priority 900
 
 ##### IP Addresses for Remote Access
 az vm list-ip-addresses --resource-group $RGName --name $VmName --output table
@@ -37,5 +32,7 @@ mstsc /v:publicIpAddress
 
 ##### From Within the newly created VM
 PS > Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+az group delete -n $RGName
 
 ##### **************************
