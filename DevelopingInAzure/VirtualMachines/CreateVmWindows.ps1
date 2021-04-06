@@ -1,6 +1,6 @@
 # Variables
 $SubscriptionName = "Visual Studio Professional Subscription"
-$RGName = "rg-az204-exam-dev-001"
+$RGName = "rg-az204-pswindows-dev-001"
 $LocationName = "EastUS"
 $BaseName = "apr2021win"
 $VmName = "vm$($BaseName)"
