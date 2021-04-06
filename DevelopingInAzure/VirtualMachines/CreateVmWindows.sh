@@ -1,4 +1,4 @@
-# Variables
+# Variables when executing from PowerShell
 $SubscriptionName = "Visual Studio Professional Subscription"
 $RGName = "rg-az204-azwindows-dev-001"
 $LocationName = "EastUS"
@@ -7,6 +7,17 @@ $VmName = "win$($BaseName)" ##### Windows computer name cannot be more than 15 c
 $PortToOpen = 80
 $username = "demouser"
 $ImageName = "Win2019Datacenter" 
+
+##### Variables when executing from Bash Shell
+SubscriptionName="Visual Studio Professional Subscription"
+RGName="rg-az204-azwindows-dev-001"
+LocationName="EastUS"
+BaseName="vmapr2021"
+VmName="win$(echo $BaseName)" 
+PortToOpen=80
+username="demouser"
+password="NoPassword@123$%^&*"
+ImageName="Win2019Datacenter" 
 
 ##### Login
 az login
@@ -19,7 +30,11 @@ az group list --output table
 az group create --name $RGName --location $LocationName
 
 ##### Virtual Machine
-az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username
+## In PowerShell
+az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username 
+
+## In Bash Shell
+az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username --admin-password $password
 
 ##### Opending the ports
 az vm open-port --resource-group $RGName --name $VmName --port $PortToOpen --priority 900
