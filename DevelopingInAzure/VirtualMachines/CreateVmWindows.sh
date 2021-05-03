@@ -1,13 +1,3 @@
-# Variables when executing from PowerShell
-$SubscriptionName = "Visual Studio Professional Subscription"
-$RGName = "rg-az204-azwindows-dev-001"
-$LocationName = "EastUS"
-$BaseName = "vmapr2021"
-$VmName = "win$($BaseName)" ##### Windows computer name cannot be more than 15 characters long
-$PortToOpen = 80
-$username = "demouser"
-$ImageName = "Win2019Datacenter" 
-
 ##### Variables when executing from Bash Shell
 SubscriptionName="Visual Studio Professional Subscription"
 RGName="rg-az204-azwindows-dev-001"

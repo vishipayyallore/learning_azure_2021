@@ -1,5 +1,5 @@
 # Variables
-$SubscriptionName = "Visual Studio Professional Subscription"
+$SubscriptionName = "SwamyPKV VSPS"
 $RGName = "rg-az204-pswindows-dev-001"
 $LocationName = "EastUS"
 $BaseName = "apr2021win"
@@ -8,7 +8,7 @@ $VNetName = "vnet$($BaseName)"
 $SubNetName = "default"
 $NsgName = "nsg$($BaseName)"
 $PublicDns = "publicdns$($BaseName)$(Get-Random)"
-$PortsToOpen = 80,3389
+$PortsToOpen = 80, 3389
 $username = 'demouser'
 $password = ConvertTo-SecureString 'NoPassword@123$%^&*' -AsPlainText -Force
 $ImageName = "Win2019Datacenter" 
@@ -28,9 +28,9 @@ New-AzResourceGroup -Name $RGName -Location $LocationName
 $CredentialsForVm = New-Object System.Management.Automation.PSCredential ($username, $password)
 
 New-AzVm -ResourceGroupName $RGName -Name $VmName -Location $LocationName `
-         -Credential $CredentialsForVm -Image $ImageName `
-         -VirtualNetworkName $VNetName -SubnetName $SubNetName -SecurityGroupName $NsgName `
-         -PublicIpAddressName $PublicDns -OpenPorts $PortsToOpen
+    -Credential $CredentialsForVm -Image $ImageName `
+    -VirtualNetworkName $VNetName -SubnetName $SubNetName -SecurityGroupName $NsgName `
+    -PublicIpAddressName $PublicDns -OpenPorts $PortsToOpen
 
 Get-AzPublicIpAddress `
     -ResourceGroupName $RGName `
@@ -50,4 +50,3 @@ Stop-AzVm -Name $VmName -ResourceGroupName $RGName
 Remove-AzVM -Name $VmName -ResourceGroupName $RGName
 
 Remove-AzResourceGroup -Name $RGName
-
