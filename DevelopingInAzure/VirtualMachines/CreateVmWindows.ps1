@@ -1,5 +1,5 @@
 # Variables
-$SubscriptionName = "SwamyPKV VSPS"
+$SubscriptionName = "Visual Studio Professional Subscription"
 $RGName = "rg-az204-pswindows-dev-001"
 $LocationName = "EastUS"
 $BaseName = "apr2021win"
