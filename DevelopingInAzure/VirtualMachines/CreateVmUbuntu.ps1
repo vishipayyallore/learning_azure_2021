@@ -9,7 +9,7 @@ $SubNetName = "default"
 $NsgName = "nsg$($BaseName)"
 $NicName = "nic$($BaseName)"
 $PublicDns = "publicdns$($BaseName)$(Get-Random)"
-$PortsToOpen = 80,22
+$PortsToOpen = 80, 22
 $username = 'demouser'
 $password = ConvertTo-SecureString 'NoPassword@123$%^&*' -AsPlainText -Force
 $NsgRuleForSsh = "NetworkSecurityGroupRuleForSSH"
@@ -35,11 +35,11 @@ $subnetConfig = New-AzVirtualNetworkSubnetConfig -Name $SubNetName -AddressPrefi
 
 # Create a virtual network
 $vnet = New-AzVirtualNetwork -ResourceGroupName $RGName -Location $LocationName -Name $VNetName `
-        -AddressPrefix 192.168.0.0/16 -Subnet $subnetConfig
+  -AddressPrefix 192.168.0.0/16 -Subnet $subnetConfig
 
 # Create a public IP address and specify a DNS name
 $pip = New-AzPublicIpAddress -ResourceGroupName $RGName -Location $LocationName -AllocationMethod Static `
-        -IdleTimeoutInMinutes 4 -Name $PublicDns
+  -IdleTimeoutInMinutes 4 -Name $PublicDns
 
 ##### Network Security Group and traffic rule
 
@@ -53,7 +53,7 @@ $nsgRuleWeb = New-AzNetworkSecurityRuleConfig -Name $NsgRuleForWeb -Protocol "Tc
 
 # Create a network security group
 $nsg = New-AzNetworkSecurityGroup -ResourceGroupName $RGName -Location $LocationName -Name $NsgName `
-  -SecurityRules $nsgRuleSSH,$nsgRuleWeb
+  -SecurityRules $nsgRuleSSH, $nsgRuleWeb
 
 ##### Virtual Network Interface card (NIC)
 # Create a virtual network card and associate with public IP address and NSG
@@ -67,9 +67,9 @@ $nic = New-AzNetworkInterface -Name $NicName -ResourceGroupName $RGName -Locatio
 
 # Create a virtual machine configuration ##### -DisablePasswordAuthentication
 $vmConfig = New-AzVMConfig -VMName $VmName -VMSize "Standard_D1_v2" | `
-Set-AzVMOperatingSystem -Linux -ComputerName $VmName -Credential $CredentialsForVm  | `
-Set-AzVMSourceImage -PublisherName "Canonical" -Offer "UbuntuServer" -Skus "18.04-LTS" -Version "latest" | `
-Add-AzVMNetworkInterface -Id $nic.Id
+  Set-AzVMOperatingSystem -Linux -ComputerName $VmName -Credential $CredentialsForVm  | `
+  Set-AzVMSourceImage -PublisherName "Canonical" -Offer "UbuntuServer" -Skus "18.04-LTS" -Version "latest" | `
+  Add-AzVMNetworkInterface -Id $nic.Id
 
 # Configure the SSH key
 $sshPublicKey = cat C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa.pub

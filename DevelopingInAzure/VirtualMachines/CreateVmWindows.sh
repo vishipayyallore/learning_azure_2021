@@ -19,11 +19,7 @@ az account show
 az group list --output table
 az group create --name $RGName --location $LocationName
 
-##### Virtual Machine
-## In PowerShell
-az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username 
-
-## In Bash Shell
+##### Creating Virtual Machine
 az vm create --resource-group $RGName --name $VmName --image $ImageName --authentication-type password --admin-username $username --admin-password $password
 
 ##### Opending the ports
@@ -37,6 +33,9 @@ mstsc /v:publicIpAddress
 
 ##### From Within the newly created VM
 PS > Install-WindowsFeature -name Web-Server -IncludeManagementTools
+
+# visit the URL
+http://IpAddress-Of-Newly-Created-VM
 
 az group delete -n $RGName
 
