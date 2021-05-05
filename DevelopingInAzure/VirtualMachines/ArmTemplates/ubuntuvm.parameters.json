@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "vmName": {
+            "value": "simpleLinuxVM2"
+        },
+        "adminUsername": {
+            "value": "demouser"
+        },
+        "authenticationType": {
+            "value": "sshPublicKey"
+        },
+        "adminPasswordOrKey": {
+            "value": "ssh-rsa YourSSHKey username@domainname"
+        },
+        "dnsLabelPrefix": {
+            "value": "simplelinuxvm1-05052021"
+        },
+        "ubuntuOSVersion": {
+            "value": "18.04-LTS"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "VmSize": {
+            "value": "Standard_B2s"
+        },
+        "virtualNetworkName": {
+            "value": "vNet"
+        },
+        "subnetName": {
+            "value": "Subnet"
+        },
+        "networkSecurityGroupName": {
+            "value": "SecGroupNet"
+        }
+    }
+}
