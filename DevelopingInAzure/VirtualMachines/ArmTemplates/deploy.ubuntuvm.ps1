@@ -15,13 +15,14 @@ New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile "./ubuntu
 ##### Open the Port 80
 Get-AzNetworkSecurityGroup -Name "SecGroupNet" -ResourceGroupName $RGName | Add-AzNetworkSecurityRuleConfig -Name "Web-Rule" -Description "Allow Web" -Access "Allow" -Protocol "Tcp" -Direction "Inbound" -Priority 100 -SourceAddressPrefix "Internet" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange "80" | Set-AzNetworkSecurityGroup
 
+##### Retrieve the Public Ip Address
 Get-AzPublicIpAddress -ResourceGroupName $RGName | Select-Object IpAddress
 
 ##### From PowerShell
-> ssh -i C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa demouser@52.168.25.254
+> ssh -i C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa demouser@13.92.209.232
 
 ##### Inside the Ubuntu VM
 ##### sudo apt update && sudo apt install -y lamp-server^
 
 # visit the URL
-http://52.168.25.254
+http://13.92.209.232

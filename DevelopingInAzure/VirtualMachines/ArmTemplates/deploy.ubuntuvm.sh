@@ -20,7 +20,7 @@ az vm open-port --resource-group $RGName --name $VmName --port $PortToOpen --pri
 ##### IP Addresses for Remote Access
 az vm list-ip-addresses --resource-group $RGName --name $VmName --output table
 
-ssh -i ./id_rsa demouser@13.82.90.190
+ssh -i ./id_rsa demouser@13.82.71.166
 
 ##### From within the Ubuntu VM
 
@@ -34,4 +34,4 @@ sudo apt-get -y install nginx
 logout
 
 ##### View the site.
-http://13.82.90.190
+http://13.82.71.166
