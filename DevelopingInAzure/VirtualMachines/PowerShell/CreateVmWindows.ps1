@@ -13,6 +13,9 @@ $username = 'demouser'
 $password = ConvertTo-SecureString 'NoPassword@123$%^&*' -AsPlainText -Force
 $ImageName = "Win2019Datacenter" 
 
+##### For Help
+get-help New-AzResourceGroup
+
 # Connecting to Subscription
 Connect-AzAccount
 Connect-AzAccount -SubscriptionName $SubscriptionName
@@ -23,7 +26,8 @@ Get-AzSubscription
 
 Get-AzVm
 
-New-AzResourceGroup -Name $RGName -Location $LocationName
+Get-AzResourceGroup
+New-AzResourceGroup -Name $RGName -Location $LocationName -Tag @{environment="dev"; Contact="Swamy"}
 
 $CredentialsForVm = New-Object System.Management.Automation.PSCredential ($username, $password)
 
