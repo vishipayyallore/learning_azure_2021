@@ -1,6 +1,6 @@
 # Variables
 $SubscriptionName = "SwamyPKV VSPS"
-$RGName = "rg-az204-pswindows-dev-001"
+$RGName = "rg-az204-arm-pswindows-dev-001"
 $LocationName = "EastUS"
 $BaseName = "apr2021win"
 $VmName = "vm$($BaseName)"
@@ -26,19 +26,21 @@ Get-AzSubscription
 
 Get-AzVm
 
-Get-AzResourceGroup
+Get-AzResourceGroup | Format-Table
 New-AzResourceGroup -Name $RGName -Location $LocationName -Tag @{environment="dev"; Contact="Swamy"}
 
-$CredentialsForVm = New-Object System.Management.Automation.PSCredential ($username, $password)
+New-AzResourceGroupDeployment -ResourceGroupName $RGName -TemplateFile .\windowsvm.deploy.json -TemplateParameterFile .\windowsvm.parameters.json
 
-New-AzVm -ResourceGroupName $RGName -Name $VmName -Location $LocationName `
-    -Credential $CredentialsForVm -Image $ImageName `
-    -VirtualNetworkName $VNetName -SubnetName $SubNetName -SecurityGroupName $NsgName `
-    -PublicIpAddressName $PublicDns -OpenPorts $PortsToOpen
+Get-AzNetworkSecurityGroup -ResourceGroupName $RGNAME | Select-Object name
+
+Get-AzNetworkSecurityGroup -ResourceGroupName $RGNAME `
+| Add-AzNetworkSecurityRuleConfig -Name "port_80" -Description "Allow port 80" -Access "Allow" -Protocol "Tcp" `
+-Direction "Inbound" -Priority 100 -SourceAddressPrefix "Internet" -SourcePortRange "*" -DestinationAddressPrefix "*" -DestinationPortRange "80" `
+| Set-AzNetworkSecurityGroup
 
 Get-AzPublicIpAddress `
     -ResourceGroupName $RGName `
-    -Name $PublicDns | Select-Object IpAddress
+     | Select-Object IpAddress
 
 mstsc /v:publicIpAddress
 

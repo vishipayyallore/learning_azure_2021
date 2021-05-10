@@ -1,4 +1,4 @@
-SubscriptionName="Visual Studio Professional Subscription"
+SubscriptionName="SwamyPKV VSPS"
 RGName="rg-az204-arm-azubuntu-dev-001"
 LocationName="EastUS"
 BaseName="vmapr2021"

@@ -1,5 +1,5 @@
 # Variables
-$SubscriptionName = "Visual Studio Professional Subscription"
+$SubscriptionName = "SwamyPKV VSPS"
 $RGName = "rg-az204-psubuntu-dev-001"
 $LocationName = "CentralUS"
 $BaseName = "apr2021ubuntu"
@@ -11,7 +11,7 @@ $NicName = "nic$($BaseName)"
 $PublicDns = "publicdns$($BaseName)$(Get-Random)"
 $PortsToOpen = 80, 22
 $username = 'demouser'
-$password = ConvertTo-SecureString 'NoPassword@123$%^&*' -AsPlainText -Force
+$password = ConvertTo-SecureString 'ToBeDone' -AsPlainText -Force
 $NsgRuleForSsh = "NetworkSecurityGroupRuleForSSH"
 $NsgRuleForWeb = "NetworkSecurityGroupRuleForWeb"
 

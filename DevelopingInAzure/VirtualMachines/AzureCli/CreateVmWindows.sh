@@ -1,12 +1,12 @@
 ##### Variables when executing from Bash Shell
-SubscriptionName="Visual Studio Professional Subscription"
+SubscriptionName="SwamyPKV VSPS"
 RGName="rg-az204-azwindows-dev-001"
 LocationName="EastUS"
 BaseName="vmapr2021"
 VmName="win$(echo $BaseName)" 
 PortToOpen=80
 username="demouser"
-password="NoPassword@123$%^&*"
+password="ToBeDone"
 ImageName="Win2019Datacenter" 
 
 ##### Login

@@ -1,6 +1,6 @@
 ##### Variables when executing from Bash Shell
 ##### Windows computer name cannot be more than 15 characters long
-SubscriptionName="Visual Studio Professional Subscription"
+SubscriptionName="SwamyPKV VSPS"
 RGName="rg-az204-azubuntu-dev-001"
 LocationName="EastUS"
 BaseName="vmapr2021"
