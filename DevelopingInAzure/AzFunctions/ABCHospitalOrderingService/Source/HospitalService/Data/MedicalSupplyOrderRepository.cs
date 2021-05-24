@@ -64,6 +64,10 @@ namespace HospitalService.Data
                         medicineOrder.OrderStatus = "Approved";
 
                         medicineOrder.AdditionalComments = "Assistance Overriding the approval";
+
+                        medicineOrder.TimeofApproval = DateTime.Now;
+                        command.Parameters.AddWithValue("@TimeofApproval",
+                            medicineOrder.TimeofApproval).SqlDbType = SqlDbType.DateTime2;
                     }
                 }
 
@@ -86,6 +90,38 @@ namespace HospitalService.Data
                 command.ExecuteNonQuery();
 
                 medicineOrder.Id = Guid.Parse(recordId.Value.ToString());
+            }
+
+            return true;
+        }
+
+        public static bool ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand()
+                {
+                    CommandText = "[dbo].[usp_update_med_order_by_id]",
+                    Connection = connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@Id",
+                    medicineOrderApproval.Id).SqlDbType = SqlDbType.UniqueIdentifier;
+
+                command.Parameters.AddWithValue("@OrderStatus",
+                    medicineOrderApproval.OrderStatus).SqlDbType = SqlDbType.VarChar;
+
+                medicineOrderApproval.TimeofApproval = DateTime.Now;
+                command.Parameters.AddWithValue("@TimeofApproval",
+                    medicineOrderApproval.TimeofApproval).SqlDbType = SqlDbType.DateTime2;
+
+                command.Parameters.AddWithValue("@AdditionalComments",
+                    medicineOrderApproval.AdditionalComments).SqlDbType = SqlDbType.VarChar;
+
+                connection.Open();
+                command.ExecuteNonQuery();
             }
 
             return true;

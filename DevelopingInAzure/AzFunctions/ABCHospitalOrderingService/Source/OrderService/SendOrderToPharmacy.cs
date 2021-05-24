@@ -8,7 +8,7 @@ namespace OrderService
     public static class SendOrderToPharmacy
     {
         [FunctionName("SendOrderToPharmacy")]
-        public static void Run([ServiceBusTrigger("medicialsuppyorders", Connection = "ServiceBusConnection")]string myQueueItem, ILogger log)
+        public static void Run([ServiceBusTrigger("medicialsupplyorders", Connection = "ServiceBusConnection")]string myQueueItem, ILogger log)
         {
             log.LogInformation($"C# ServiceBus queue trigger function processed message: {myQueueItem}");
         }

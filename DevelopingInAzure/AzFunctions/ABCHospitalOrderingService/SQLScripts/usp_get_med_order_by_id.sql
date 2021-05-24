@@ -6,7 +6,9 @@ BEGIN
 	SET NOCOUNT ON;
 
 	SELECT
-		[Id], [OrderStatus], [AdditionalComments]
+		[Id], [PatientName] ,[PatientDOB] ,[PatientRoom] ,[AttendingPhysicianName] ,[EmployeeInitiatingOrder] ,[IsPhysicianAssistant] ,[IsNurse] 
+			,[MedicationName] ,[MedicationDosage] ,[MedicationFrequency] ,[UrgencyRanking] ,[CreatedDateTime] ,[TimeofApproval] ,[OrderStatus] 
+			,[AdditionalComments]
 	FROM
 		[dbo].[MedOrders] 
 	WHERE

@@ -17,24 +17,27 @@ namespace HospitalService
         [FunctionName("ApproveMedicalSupplyOrder")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
-            [ServiceBus("medicialsuppyorders", Connection = "ServiceBusConnection",
-            EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrder> medicialSuppyOrders,
+            [ServiceBus("medicialsupplyorders", Connection = "ServiceBusConnection",
+            EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrderApproval> medicialSuppyOrders,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function request received for medical order.");
 
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            MedicineOrder medicineOrder = JsonConvert.DeserializeObject<MedicineOrder>(requestBody);
+            MedicineOrderApproval medicineOrderApproval = JsonConvert.DeserializeObject<MedicineOrderApproval>(requestBody);
 
             SettingsData settingsData = new SettingsData();
 
-            MedicalSupplyOrderRepository.PlaceMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrder);
+            MedicalSupplyOrderRepository.ApproveMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrderApproval);
 
-            // await medicialSuppyOrders.AddAsync(medicineOrder);
+            if (medicineOrderApproval.OrderStatus == "Approved")
+            {
+                await medicialSuppyOrders.AddAsync(medicineOrderApproval);
+            }
 
             log.LogInformation("C# HTTP trigger function placed the medical order.");
 
-            return new OkObjectResult(medicineOrder);
+            return new NoContentResult();
         }
 
     }

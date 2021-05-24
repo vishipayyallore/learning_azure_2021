@@ -17,7 +17,7 @@ namespace HospitalService
         [FunctionName("RequestMedicalSupplyOrder")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
-            [ServiceBus("medicialsuppyorders", Connection = "ServiceBusConnection",
+            [ServiceBus("medicialsupplyorders", Connection = "ServiceBusConnection",
             EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrder> medicialSuppyOrders,
             ILogger log)
         {
@@ -30,7 +30,10 @@ namespace HospitalService
 
             MedicalSupplyOrderRepository.PlaceMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrder);
 
-            // await medicialSuppyOrders.AddAsync(medicineOrder);
+            if (medicineOrder.OrderStatus == "Approved")
+            {
+                await medicialSuppyOrders.AddAsync(medicineOrder);
+            }
 
             log.LogInformation("C# HTTP trigger function placed the medical order.");
 
