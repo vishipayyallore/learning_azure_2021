@@ -10,7 +10,7 @@ namespace OrderService
     {
 
         [FunctionName("SendOrderToPharmacy")]
-        public static async void Run([ServiceBusTrigger("medicialsupplyorders", Connection = "ServiceBusConnection")] string medicineOrderQueueItem,
+        public static async void Run([ServiceBusTrigger("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection")] string medicineOrderQueueItem,
             [CosmosDB(databaseName: "MedsRUsDataStore", collectionName: "MedOrders", ConnectionStringSetting = "CosmosDBConnection")]
             IAsyncCollector<MedicineOrder> medicineOrderAsyncCollector,
             ILogger log)

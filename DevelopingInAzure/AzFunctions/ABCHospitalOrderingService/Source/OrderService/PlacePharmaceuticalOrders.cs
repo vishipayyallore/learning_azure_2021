@@ -20,7 +20,7 @@ namespace OrderService
         [FunctionName("PlacePharmaceuticalOrders")]
         public static async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
-            [ServiceBus("medicialsupplyorders", Connection = "ServiceBusConnection",
+            [ServiceBus("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection",
             EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrder> medicialSuppyOrders,
             ILogger log)
         {

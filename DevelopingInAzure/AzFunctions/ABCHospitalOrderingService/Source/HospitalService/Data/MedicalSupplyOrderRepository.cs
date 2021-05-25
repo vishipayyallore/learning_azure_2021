@@ -95,6 +95,70 @@ namespace HospitalService.Data
             return true;
         }
 
+        public static MedicineOrder RetrieveMedicalSupplyOrder(string connectionString, Guid id)
+        {
+            MedicineOrder medicineOrder = null;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand()
+                {
+                    CommandText = "[dbo].[usp_get_med_order_by_id]",
+                    Connection = connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@Id",
+                    id).SqlDbType = SqlDbType.UniqueIdentifier;
+
+                connection.Open();
+                SqlDataReader dataReader = command.ExecuteReader();
+
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+
+                    medicineOrder = new MedicineOrder
+                    {
+                        Id = dataReader.GetGuid(0),
+
+                        PatientName = dataReader.GetString(1),
+
+                        PatientDOB = dataReader.GetDateTime(2),
+
+                        PatientRoom = (int)dataReader.GetDecimal(3),
+
+                        AttendingPhysicianName = dataReader.GetString(4),
+
+                        EmployeeInitiatingOrder = dataReader.GetString(5),
+
+                        IsPhysicianAssistant = dataReader.GetBoolean(6),
+
+                        IsNurse = dataReader.GetBoolean(7),
+
+                        MedicationName = dataReader.GetString(8),
+
+                        MedicationDosage = dataReader.GetString(9),
+
+                        MedicationFrequency = (int)dataReader.GetDecimal(10),
+
+                        UrgencyRanking = (int)dataReader.GetDecimal(11),
+
+                        CreatedDateTime = dataReader.GetDateTime(12),
+
+                        TimeofApproval = dataReader.GetDateTime(13),
+
+                        OrderStatus = dataReader.GetString(14),
+
+                        AdditionalComments = dataReader.GetString(15)
+                    };
+                }
+            }
+
+            return medicineOrder;
+        }
+
         public static bool ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -113,7 +177,6 @@ namespace HospitalService.Data
                 command.Parameters.AddWithValue("@OrderStatus",
                     medicineOrderApproval.OrderStatus).SqlDbType = SqlDbType.VarChar;
 
-                medicineOrderApproval.TimeofApproval = DateTime.Now;
                 command.Parameters.AddWithValue("@TimeofApproval",
                     medicineOrderApproval.TimeofApproval).SqlDbType = SqlDbType.DateTime2;
 
