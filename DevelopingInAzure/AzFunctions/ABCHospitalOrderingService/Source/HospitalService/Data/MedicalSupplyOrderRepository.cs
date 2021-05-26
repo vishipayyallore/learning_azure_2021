@@ -147,7 +147,7 @@ namespace HospitalService.Data
 
                         CreatedDateTime = dataReader.GetDateTime(12),
 
-                        TimeofApproval = dataReader.GetDateTime(13),
+                        TimeofApproval = dataReader.IsDBNull(dataReader.GetOrdinal("TimeofApproval")) ? DateTime.Now : dataReader.GetDateTime(13),
 
                         OrderStatus = dataReader.GetString(14),
 
