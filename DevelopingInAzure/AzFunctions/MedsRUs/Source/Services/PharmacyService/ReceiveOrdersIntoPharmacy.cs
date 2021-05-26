@@ -2,24 +2,27 @@ using MedsRUs.Data;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
 
-namespace OrderService
+namespace PharmacyService
 {
-
-    public static class SendOrderToPharmacy
+    public static class ReceiveOrdersIntoPharmacy
     {
-
-        [FunctionName("SendOrderToPharmacy")]
-        public static async void Run([ServiceBusTrigger("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection")] string medicineOrderQueueItem,
+        [FunctionName("ReceiveOrdersIntoPharmacy")]
+        public static async Task<bool> Run([ServiceBusTrigger("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection")] string medicineOrderQueueItem,
             [CosmosDB(databaseName: "MedsRUsDataStore", collectionName: "MedOrders", ConnectionStringSetting = "CosmosDBConnection")]
             IAsyncCollector<MedicineOrder> medicineOrderAsyncCollector,
             ILogger log)
         {
-            log.LogInformation($"C# ServiceBus queue trigger function processed message: {medicineOrderQueueItem}");
+            log.LogInformation($"Received Medicine Order from ServiceBus queue : {medicineOrderQueueItem}");
 
             MedicineOrder medicineOrder = JsonConvert.DeserializeObject<MedicineOrder>(medicineOrderQueueItem);
 
             await medicineOrderAsyncCollector.AddAsync(medicineOrder);
+
+            log.LogInformation($"Medicine Order Sent to Cosmos Db: {medicineOrder}");
+
+            return true;
         }
 
     }
