@@ -29,13 +29,14 @@ namespace PharmacyService
 
             log.LogInformation($"Medicine Order from Cosmos Db: {medicineOrder}");
 
+            if(medicineOrder == null)
+            {
+                return new NotFoundResult();
+            }
+
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrderApproval medicineOrderApproval = JsonConvert.DeserializeObject<MedicineOrderApproval>(requestBody);
 
-            // Updating the Pharmacy Order 
-            // var aaa = req.Path.Value.Split('/');
-            // medicineOrder.ReferenceId = Guid.Parse(req.Path.Value.Split('/')[3]);
-            
             medicineOrder.LotNumber = medicineOrderApproval.LotNumber;
             medicineOrder.TimeofApproval = DateTime.Now;
             medicineOrder.PhramacyOrderStatus = medicineOrderApproval.PhramacyOrderStatus;
