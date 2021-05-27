@@ -1,25 +1,17 @@
 ﻿using System;
 
-namespace MedsRUs.Data
+namespace PharmacyService.Data
 {
 
     public class MedicineOrder
     {
-        public Guid Id { get; set; }
+        public Guid id { get; set; }
 
         public string PatientName { get; set; } = $"Patient {new Random().Next(1, 999)}";
 
         public DateTime PatientDOB { get; set; } = DateTime.Now.AddYears(-(new Random().Next(5, 20)));
 
-        public int PatientRoom { get; set; } = new Random().Next(101, 999);
-
         public string AttendingPhysicianName { get; set; } = $"Physician {new Random().Next(1, 5)}";
-
-        public string EmployeeInitiatingOrder { get; set; } = $"Assistant {new Random().Next(1, 5)}";
-
-        public bool IsPhysicianAssistant { get; set; } = new Random().Next(1, 999) >= 500;
-
-        public bool IsNurse { get; set; } = false;
 
         public string MedicationName { get; set; } = "Aspirin";
 
@@ -29,14 +21,13 @@ namespace MedsRUs.Data
 
         public int UrgencyRanking { get; set; } = new Random().Next(1, 5);
 
-        public DateTime CreatedDateTime { get; set; } = DateTime.Now;
+        public string LotNumber { get; set; } = "";
+
+        public string PhramacyOrderStatus { get; set; } = "Pending";
 
         public DateTime TimeofApproval { get; set; }
 
-        public string OrderStatus { get; set; } = "Pending";
-
-        public string AdditionalComments { get; set; } = "Please approve";
+        public string PhramacyAdditionalComments { get; set; } = "Please approve";
     }
-
 
 }

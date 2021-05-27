@@ -11,9 +11,6 @@
   <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MedsRUs.Data\MedsRUs.Data.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="host.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

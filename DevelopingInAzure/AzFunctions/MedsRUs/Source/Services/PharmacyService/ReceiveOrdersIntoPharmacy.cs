@@ -1,8 +1,7 @@
-using MedsRUs.Data;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Threading.Tasks;
+using PharmacyService.Data;
 
 namespace PharmacyService
 {
