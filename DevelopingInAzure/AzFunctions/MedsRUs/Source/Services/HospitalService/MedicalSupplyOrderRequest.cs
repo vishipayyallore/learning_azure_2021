@@ -1,5 +1,5 @@
 using HospitalService.Data;
-using MedsRUs.Data;
+using HospitalService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

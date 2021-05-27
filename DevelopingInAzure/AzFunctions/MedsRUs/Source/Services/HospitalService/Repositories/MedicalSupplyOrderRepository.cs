@@ -1,9 +1,9 @@
-﻿using MedsRUs.Data;
+﻿using HospitalService.Data;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace HospitalService.Data
+namespace HospitalService.Repositories
 {
     public class MedicalSupplyOrderRepository
     {
