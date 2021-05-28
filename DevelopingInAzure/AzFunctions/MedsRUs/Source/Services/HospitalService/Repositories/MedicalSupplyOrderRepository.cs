@@ -190,6 +190,37 @@ namespace HospitalService.Repositories
             return true;
         }
 
+        public static bool ModifyOrderWithPharmacyUpdates(string connectionString, MedicineOrderPharmacyApproval medicineOrderPharmacyApproval)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand()
+                {
+                    CommandText = "[dbo].[usp_update_med_order_with_pharmacy_updates]",
+                    Connection = connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.AddWithValue("@Id",
+                    medicineOrderPharmacyApproval.Id).SqlDbType = SqlDbType.UniqueIdentifier;
+
+                command.Parameters.AddWithValue("@PharmacyOrderStatus",
+                    medicineOrderPharmacyApproval.PharmacyOrderStatus).SqlDbType = SqlDbType.VarChar;
+
+                command.Parameters.AddWithValue("@PharmacyTimeofApproval",
+                    medicineOrderPharmacyApproval.PharmacyTimeofApproval).SqlDbType = SqlDbType.DateTime2;
+
+                command.Parameters.AddWithValue("@PharmacyAdditionalComments",
+                    medicineOrderPharmacyApproval.PharmacyAdditionalComments).SqlDbType = SqlDbType.VarChar;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+
+            return true;
+        }
+
     }
 
 }

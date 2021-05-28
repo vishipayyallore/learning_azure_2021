@@ -65,5 +65,6 @@
     <Build Include="dbo\Programmability\usp_get_med_order_by_id.sql" />
     <Build Include="dbo\Programmability\usp_update_med_order_by_id.sql" />
     <Build Include="dbo\Tables\MedOrders.sql" />
+    <Build Include="dbo\Programmability\usp_update_med_order_with_pharmacy_updates.sql" />
   </ItemGroup>
 </Project>

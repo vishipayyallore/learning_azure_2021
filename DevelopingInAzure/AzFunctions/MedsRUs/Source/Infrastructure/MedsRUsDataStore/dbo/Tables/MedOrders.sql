@@ -16,4 +16,7 @@
 	[TimeofApproval] [datetime2](7) NULL,
 	[OrderStatus] [varchar](50) NULL,
 	[AdditionalComments] [varchar](100) NULL,
+	[PharmacyTimeofApproval] [datetime2](7) NULL,
+	[PharmacyOrderStatus] [varchar](50) NULL,
+	[PharmacyAdditionalComments] [varchar](100) NULL,
 )
