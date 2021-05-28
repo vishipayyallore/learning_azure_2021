@@ -38,9 +38,9 @@ namespace PharmacyService
             MedicineOrderApproval medicineOrderApproval = JsonConvert.DeserializeObject<MedicineOrderApproval>(requestBody);
 
             medicineOrder.LotNumber = medicineOrderApproval.LotNumber;
-            medicineOrder.TimeofApproval = DateTime.Now;
-            medicineOrder.PhramacyOrderStatus = medicineOrderApproval.PhramacyOrderStatus;
-            medicineOrder.PhramacyAdditionalComments = medicineOrderApproval.PhramacyAdditionalComments;
+            medicineOrder.PharmacyTimeofApproval = DateTime.Now;
+            medicineOrder.PharmacyOrderStatus = medicineOrderApproval.PharmacyOrderStatus;
+            medicineOrder.PharmacyAdditionalComments = medicineOrderApproval.PharmacyAdditionalComments;
 
             await medicialSuppyOrders.AddAsync(medicineOrder);
 

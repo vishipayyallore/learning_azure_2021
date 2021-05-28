@@ -15,6 +15,7 @@ namespace HospitalService
         {
             log.LogInformation($"Received Medicine Order Pharmacy Updates from ServiceBus queue : {medicineOrderQueueItem}");
 
+            // TODO: Tech Debt (It should be part of Dependency Injection)
             SettingsData settingsData = new SettingsData();
 
             MedicineOrderPharmacyApproval medicineOrderPharmacyApproval = JsonConvert.DeserializeObject<MedicineOrderPharmacyApproval>(medicineOrderQueueItem);

@@ -7,7 +7,7 @@ namespace HospitalService.Data
     {
         public Guid Id { get; set; }
 
-        public DateTime PharmacyTimeofApproval { get; set; }
+        public DateTime PharmacyTimeofApproval { get; set; } = DateTime.Now;
 
         public string PharmacyOrderStatus { get; set; }
 

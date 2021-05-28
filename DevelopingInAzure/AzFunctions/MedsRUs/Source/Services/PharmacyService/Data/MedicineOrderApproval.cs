@@ -7,9 +7,9 @@ namespace PharmacyService.Data
     {
         public string LotNumber { get; set; } = "";
 
-        public string PhramacyOrderStatus { get; set; } = "Pending";
+        public string PharmacyOrderStatus { get; set; } = "Pending";
 
-        public string PhramacyAdditionalComments { get; set; } = "Please approve";
+        public string PharmacyAdditionalComments { get; set; } = "Please approve";
     }
 
 }
