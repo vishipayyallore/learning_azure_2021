@@ -345,3 +345,6 @@ DevelopingInAzure/AppServices/booksstoreweb/Books.Web/wwwroot/images/books/Book7
 DevelopingInAzure/AppServices/booksstoreweb/Books.Web/wwwroot/images/books/Book8.jpg
 DevelopingInAzure/AppServices/booksstoreweb/Books.Web/wwwroot/images/books/Book9.jpg
 DevelopingInAzure/AppServices/booksstoreweb/Books.Web/wwwroot/images/loader.gif
+/DevelopingInAzure/AzFunctions/MedsRUs/Source/Services/HospitalService/Properties/serviceDependencies.func-hospitalservice - Zip Deploy.json
+/DevelopingInAzure/AzFunctions/MedsRUs/Source/Services/HospitalService/Properties/ServiceDependencies/func-hospitalservice - Zip Deploy/storage1.arm.json
+/DevelopingInAzure/AzFunctions/MedsRUs/Source/Services/HospitalService/Properties/ServiceDependencies/func-hospitalservice - Zip Deploy/appInsights1.arm.json
