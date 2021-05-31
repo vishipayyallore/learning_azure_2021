@@ -1,6 +1,5 @@
 using HospitalService.Data;
 using HospitalService.Interfaces;
-using HospitalService.Repositories;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -12,10 +11,13 @@ namespace HospitalService
     {
 
         private readonly IConnectionStrings _connectionStrings;
+        private readonly IMedicalSupplyOrderRepository _medicalSupplyOrderRepository;
 
-        public MedicalSupplyOrderPharmacyApproval(IConnectionStrings connectionStrings)
+        public MedicalSupplyOrderPharmacyApproval(IConnectionStrings connectionStrings, IMedicalSupplyOrderRepository medicalSupplyOrderRepository)
         {
             _connectionStrings = connectionStrings ?? throw new ArgumentNullException(nameof(connectionStrings));
+
+            _medicalSupplyOrderRepository = medicalSupplyOrderRepository ?? throw new ArgumentNullException(nameof(medicalSupplyOrderRepository));
         }
 
         [FunctionName("MedicalSupplyOrderPharmacyApproval")]
@@ -26,7 +28,7 @@ namespace HospitalService
 
             MedicineOrderPharmacyApproval medicineOrderPharmacyApproval = JsonConvert.DeserializeObject<MedicineOrderPharmacyApproval>(medicineOrderQueueItem);
 
-            MedicalSupplyOrderRepository.ModifyOrderWithPharmacyUpdates(_connectionStrings.SqlServerConnectionString, medicineOrderPharmacyApproval);
+            _ = _medicalSupplyOrderRepository.ModifyOrderWithPharmacyUpdates(_connectionStrings.SqlServerConnectionString, medicineOrderPharmacyApproval);
 
             log.LogInformation($"Received Medicine Order Pharmacy Updated Sent to SQL Server: {medicineOrderPharmacyApproval}");
         }

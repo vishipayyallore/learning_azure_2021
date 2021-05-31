@@ -1,14 +1,15 @@
 ﻿using HospitalService.Data;
+using HospitalService.Interfaces;
 using System;
 using System.Data;
 using System.Data.SqlClient;
 
 namespace HospitalService.Repositories
 {
-    public class MedicalSupplyOrderRepository
+    public class MedicalSupplyOrderRepository : IMedicalSupplyOrderRepository
     {
 
-        public static bool PlaceMedicalSupplyOrder(string connectionString, MedicineOrder medicineOrder)
+        public bool PlaceMedicalSupplyOrder(string connectionString, MedicineOrder medicineOrder)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -95,7 +96,7 @@ namespace HospitalService.Repositories
             return true;
         }
 
-        public static MedicineOrder RetrieveMedicalSupplyOrder(string connectionString, Guid id)
+        public MedicineOrder RetrieveMedicalSupplyOrder(string connectionString, Guid id)
         {
             MedicineOrder medicineOrder = null;
 
@@ -159,7 +160,7 @@ namespace HospitalService.Repositories
             return medicineOrder;
         }
 
-        public static bool ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
+        public bool ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -190,7 +191,7 @@ namespace HospitalService.Repositories
             return true;
         }
 
-        public static bool ModifyOrderWithPharmacyUpdates(string connectionString, MedicineOrderPharmacyApproval medicineOrderPharmacyApproval)
+        public bool ModifyOrderWithPharmacyUpdates(string connectionString, MedicineOrderPharmacyApproval medicineOrderPharmacyApproval)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

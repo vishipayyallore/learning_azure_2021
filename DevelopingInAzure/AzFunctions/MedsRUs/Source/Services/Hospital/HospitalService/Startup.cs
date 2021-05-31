@@ -1,5 +1,6 @@
 ﻿using HospitalService.Config;
 using HospitalService.Interfaces;
+using HospitalService.Repositories;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,15 +11,14 @@ namespace HospitalService
 
     public class Startup : FunctionsStartup
     {
+
         public override void Configure(IFunctionsHostBuilder builder)
         {
-
-            //builder.Services.AddSingleton<IMyService>((s) => {
-            //    return new MyService();
-            //});
-
             builder.Services.AddSingleton<IConnectionStrings, ConnectionStrings>();
+
+            builder.Services.AddTransient<IMedicalSupplyOrderRepository, MedicalSupplyOrderRepository>();
         }
+
     }
 
 }

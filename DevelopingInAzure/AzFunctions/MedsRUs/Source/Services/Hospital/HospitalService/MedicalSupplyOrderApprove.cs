@@ -1,6 +1,5 @@
 using HospitalService.Data;
 using HospitalService.Interfaces;
-using HospitalService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -18,10 +17,13 @@ namespace HospitalService
     {
 
         private readonly IConnectionStrings _connectionStrings;
+        private readonly IMedicalSupplyOrderRepository _medicalSupplyOrderRepository;
 
-        public MedicalSupplyOrderApprove(IConnectionStrings connectionStrings)
+        public MedicalSupplyOrderApprove(IConnectionStrings connectionStrings, IMedicalSupplyOrderRepository medicalSupplyOrderRepository)
         {
             _connectionStrings = connectionStrings ?? throw new ArgumentNullException(nameof(connectionStrings));
+
+            _medicalSupplyOrderRepository = medicalSupplyOrderRepository ?? throw new ArgumentNullException(nameof(medicalSupplyOrderRepository));
         }
 
         [FunctionName("ApproveMedicalSupplyOrder")]
@@ -36,7 +38,7 @@ namespace HospitalService
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrderApproval medicineOrderApproval = JsonConvert.DeserializeObject<MedicineOrderApproval>(requestBody);
 
-            MedicineOrder medicineOrder = MedicalSupplyOrderRepository
+            MedicineOrder medicineOrder = _medicalSupplyOrderRepository
                 .RetrieveMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrderApproval.Id);
 
             if (medicineOrder == null)
@@ -48,7 +50,7 @@ namespace HospitalService
             medicineOrder.OrderStatus = medicineOrderApproval.OrderStatus;
             medicineOrder.AdditionalComments = medicineOrderApproval.AdditionalComments;
 
-            MedicalSupplyOrderRepository.ApproveMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrderApproval);
+            _ = _medicalSupplyOrderRepository.ApproveMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrderApproval);
 
             if (medicineOrderApproval.OrderStatus == "Approved")
             {

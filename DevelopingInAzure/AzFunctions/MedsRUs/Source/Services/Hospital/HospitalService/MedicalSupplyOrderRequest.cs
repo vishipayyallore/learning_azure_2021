@@ -1,6 +1,5 @@
 using HospitalService.Data;
 using HospitalService.Interfaces;
-using HospitalService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -18,10 +17,13 @@ namespace HospitalService
     {
 
         private readonly IConnectionStrings _connectionStrings;
+        private readonly IMedicalSupplyOrderRepository _medicalSupplyOrderRepository;
 
-        public MedicalSupplyOrderRequest(IConnectionStrings connectionStrings)
+        public MedicalSupplyOrderRequest(IConnectionStrings connectionStrings, IMedicalSupplyOrderRepository medicalSupplyOrderRepository)
         {
             _connectionStrings = connectionStrings ?? throw new ArgumentNullException(nameof(connectionStrings));
+
+            _medicalSupplyOrderRepository = medicalSupplyOrderRepository ?? throw new ArgumentNullException(nameof(medicalSupplyOrderRepository));
         }
 
         [FunctionName("RequestMedicalSupplyOrder")]
@@ -36,7 +38,7 @@ namespace HospitalService
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrder medicineOrder = JsonConvert.DeserializeObject<MedicineOrder>(requestBody);
 
-            MedicalSupplyOrderRepository.PlaceMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrder);
+            _ = _medicalSupplyOrderRepository.PlaceMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrder);
 
             if (medicineOrder.OrderStatus == "Approved")
             {
