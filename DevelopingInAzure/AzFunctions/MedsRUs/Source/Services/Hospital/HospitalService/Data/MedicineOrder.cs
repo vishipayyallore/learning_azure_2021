@@ -23,7 +23,7 @@ namespace HospitalService.Data
 
         public string MedicationName { get; set; } = "Aspirin";
 
-        public string MedicationDosage { get; set; } = "81 mg";
+        public string MedicationDosage { get; set; } = $"{new Random().Next(50, 500)} mg";
 
         public int MedicationFrequency { get; set; } = new Random().Next(1, 3);
 

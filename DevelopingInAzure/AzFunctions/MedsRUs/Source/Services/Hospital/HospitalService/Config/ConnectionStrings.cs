@@ -1,14 +1,15 @@
-﻿using System;
+﻿using HospitalService.Interfaces;
+using System;
 
-namespace HospitalService.Data
+namespace HospitalService.Config
 {
 
-    public class SettingsData
+    public class ConnectionStrings : IConnectionStrings
     {
-        public SettingsData()
+        public ConnectionStrings()
         {
             SqlServerConnectionString = Environment
-                .GetEnvironmentVariable("ConnectionStrings:SQLAZURECONNSTR_SqlServerConnection", EnvironmentVariableTarget.Process);
+                .GetEnvironmentVariable("SQLAZURECONNSTR_SqlServerConnection", EnvironmentVariableTarget.Process);
 
             ServiceBusConnectionString = Environment
                 .GetEnvironmentVariable("ServiceBusConnection", EnvironmentVariableTarget.Process);

@@ -1,4 +1,5 @@
 using HospitalService.Data;
+using HospitalService.Interfaces;
 using HospitalService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,15 +8,24 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.ServiceBus;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
 namespace HospitalService
 {
-    public static class MedicalSupplyOrderRequest
+    public class MedicalSupplyOrderRequest
     {
+
+        private readonly IConnectionStrings _connectionStrings;
+
+        public MedicalSupplyOrderRequest(IConnectionStrings connectionStrings)
+        {
+            _connectionStrings = connectionStrings ?? throw new ArgumentNullException(nameof(connectionStrings));
+        }
+
         [FunctionName("RequestMedicalSupplyOrder")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             [ServiceBus("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection",
             EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrder> medicialSuppyOrders,
@@ -26,9 +36,7 @@ namespace HospitalService
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrder medicineOrder = JsonConvert.DeserializeObject<MedicineOrder>(requestBody);
 
-            SettingsData settingsData = new SettingsData();
-
-            MedicalSupplyOrderRepository.PlaceMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrder);
+            MedicalSupplyOrderRepository.PlaceMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrder);
 
             if (medicineOrder.OrderStatus == "Approved")
             {

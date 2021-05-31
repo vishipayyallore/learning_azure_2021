@@ -1,4 +1,5 @@
 using HospitalService.Data;
+using HospitalService.Interfaces;
 using HospitalService.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,18 @@ using System.Threading.Tasks;
 
 namespace HospitalService
 {
-    public static class MedicalSupplyOrderApprove
+    public class MedicalSupplyOrderApprove
     {
 
+        private readonly IConnectionStrings _connectionStrings;
+
+        public MedicalSupplyOrderApprove(IConnectionStrings connectionStrings)
+        {
+            _connectionStrings = connectionStrings ?? throw new ArgumentNullException(nameof(connectionStrings));
+        }
+
         [FunctionName("ApproveMedicalSupplyOrder")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req,
             [ServiceBus("sbq-medicialsupplyorders-in", Connection = "ServiceBusConnection",
             EntityType = EntityType.Queue)] IAsyncCollector<MedicineOrder> medicialSuppyOrders,
@@ -28,9 +36,8 @@ namespace HospitalService
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrderApproval medicineOrderApproval = JsonConvert.DeserializeObject<MedicineOrderApproval>(requestBody);
 
-            SettingsData settingsData = new SettingsData();
-
-            MedicineOrder medicineOrder = MedicalSupplyOrderRepository.RetrieveMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrderApproval.Id);
+            MedicineOrder medicineOrder = MedicalSupplyOrderRepository
+                .RetrieveMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrderApproval.Id);
 
             if (medicineOrder == null)
             {
@@ -41,7 +48,7 @@ namespace HospitalService
             medicineOrder.OrderStatus = medicineOrderApproval.OrderStatus;
             medicineOrder.AdditionalComments = medicineOrderApproval.AdditionalComments;
 
-            MedicalSupplyOrderRepository.ApproveMedicalSupplyOrder(settingsData.SqlServerConnectionString, medicineOrderApproval);
+            MedicalSupplyOrderRepository.ApproveMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrderApproval);
 
             if (medicineOrderApproval.OrderStatus == "Approved")
             {
