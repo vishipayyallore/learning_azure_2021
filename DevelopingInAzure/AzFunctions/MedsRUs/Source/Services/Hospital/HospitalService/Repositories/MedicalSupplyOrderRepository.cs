@@ -1,15 +1,18 @@
 ﻿using HospitalService.Data;
 using HospitalService.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace HospitalService.Repositories
 {
+
     public class MedicalSupplyOrderRepository : IMedicalSupplyOrderRepository
     {
 
-        public bool PlaceMedicalSupplyOrder(string connectionString, MedicineOrder medicineOrder)
+        public async Task<bool> PlaceMedicalSupplyOrder(string connectionString, MedicineOrder medicineOrder)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -88,7 +91,8 @@ namespace HospitalService.Repositories
                 command.Parameters.Add(recordId);
 
                 connection.Open();
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync()
+                                .ConfigureAwait(false);
 
                 medicineOrder.Id = Guid.Parse(recordId.Value.ToString());
             }
@@ -96,7 +100,7 @@ namespace HospitalService.Repositories
             return true;
         }
 
-        public MedicineOrder RetrieveMedicalSupplyOrder(string connectionString, Guid id)
+        public async Task<MedicineOrder> RetrieveMedicalSupplyOrder(string connectionString, Guid id)
         {
             MedicineOrder medicineOrder = null;
 
@@ -114,11 +118,12 @@ namespace HospitalService.Repositories
                     id).SqlDbType = SqlDbType.UniqueIdentifier;
 
                 connection.Open();
-                SqlDataReader dataReader = command.ExecuteReader();
+                SqlDataReader dataReader = await command.ExecuteReaderAsync()
+                                                            .ConfigureAwait(false);
 
                 if (dataReader.HasRows)
                 {
-                    dataReader.Read();
+                    await dataReader.ReadAsync().ConfigureAwait(false);
 
                     medicineOrder = new MedicineOrder
                     {
@@ -160,7 +165,72 @@ namespace HospitalService.Repositories
             return medicineOrder;
         }
 
-        public bool ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
+        public async Task<IEnumerable<MedicineOrder>> MedicalSupplyOrdersForApproval(string connectionString)
+        {
+            List<MedicineOrder> medicineOrdersList = new List<MedicineOrder>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                SqlCommand command = new SqlCommand()
+                {
+                    CommandText = "[dbo].[usp_get_med_orders_for_approval]",
+                    Connection = connection,
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                connection.Open();
+                SqlDataReader dataReader = await command.ExecuteReaderAsync().ConfigureAwait(false);
+
+                if (dataReader.HasRows)
+                {
+                    while (await dataReader.ReadAsync().ConfigureAwait(false))
+                    {
+                        medicineOrdersList.Add(
+                            new MedicineOrder
+                            {
+                                Id = dataReader.GetGuid(0),
+
+                                PatientName = dataReader.GetString(1),
+
+                                PatientDOB = dataReader.GetDateTime(2),
+
+                                PatientRoom = (int)dataReader.GetDecimal(3),
+
+                                AttendingPhysicianName = dataReader.GetString(4),
+
+                                EmployeeInitiatingOrder = dataReader.GetString(5),
+
+                                IsPhysicianAssistant = dataReader.GetBoolean(6),
+
+                                IsNurse = dataReader.GetBoolean(7),
+
+                                MedicationName = dataReader.GetString(8),
+
+                                MedicationDosage = dataReader.GetString(9),
+
+                                MedicationFrequency = (int)dataReader.GetDecimal(10),
+
+                                UrgencyRanking = (int)dataReader.GetDecimal(11),
+
+                                CreatedDateTime = dataReader.GetDateTime(12),
+
+                                TimeofApproval = dataReader.IsDBNull(dataReader.GetOrdinal("TimeofApproval")) ? DateTime.Now : dataReader.GetDateTime(13),
+
+                                OrderStatus = dataReader.GetString(14),
+
+                                AdditionalComments = dataReader.GetString(15)
+                            }
+                            );
+                    }
+
+                }
+            }
+
+            return medicineOrdersList;
+        }
+
+        public async Task<bool> ApproveMedicalSupplyOrder(string connectionString, MedicineOrderApproval medicineOrderApproval)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -185,13 +255,13 @@ namespace HospitalService.Repositories
                     medicineOrderApproval.AdditionalComments).SqlDbType = SqlDbType.VarChar;
 
                 connection.Open();
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync().ConfigureAwait(false);
             }
 
             return true;
         }
 
-        public bool ModifyOrderWithPharmacyUpdates(string connectionString, MedicineOrderPharmacyApproval medicineOrderPharmacyApproval)
+        public async Task<bool> ModifyOrderWithPharmacyUpdates(string connectionString, MedicineOrderPharmacyApproval medicineOrderPharmacyApproval)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -216,7 +286,7 @@ namespace HospitalService.Repositories
                     medicineOrderPharmacyApproval.PharmacyAdditionalComments).SqlDbType = SqlDbType.VarChar;
 
                 connection.Open();
-                command.ExecuteNonQuery();
+                await command.ExecuteNonQueryAsync().ConfigureAwait(false);
             }
 
             return true;

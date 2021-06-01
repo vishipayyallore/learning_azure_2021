@@ -38,7 +38,9 @@ namespace HospitalService
             string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             MedicineOrder medicineOrder = JsonConvert.DeserializeObject<MedicineOrder>(requestBody);
 
-            _ = _medicalSupplyOrderRepository.PlaceMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrder);
+            _ = await _medicalSupplyOrderRepository
+                        .PlaceMedicalSupplyOrder(_connectionStrings.SqlServerConnectionString, medicineOrder)
+                        .ConfigureAwait(false);
 
             if (medicineOrder.OrderStatus == "Approved")
             {
