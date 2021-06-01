@@ -33,3 +33,7 @@ table{
 a:hover{
     color:aqua;
   }
+
+td { 
+  text-align: center; 
+}

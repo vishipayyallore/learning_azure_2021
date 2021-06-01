@@ -12,6 +12,7 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
 import { NurseComponent } from './components/hospital/nurse/nurse.component';
 import { PhysicianComponent } from './components/hospital/physician/physician.component';
 import { StaffComponent } from './components/pharmacy/staff/staff.component';
+import { PhysicianApprovalComponent } from './components/hospital/physician-approval/physician-approval.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { StaffComponent } from './components/pharmacy/staff/staff.component';
     DashboardComponent,
     NurseComponent,
     PhysicianComponent,
-    StaffComponent
+    StaffComponent,
+    PhysicianApprovalComponent
   ],
   imports: [
     BrowserModule,

@@ -10,7 +10,11 @@ import { IMedicineOrder } from '../../../interfaces/imedicine-order';
 })
 export class PhysicianComponent implements OnInit {
 
-  medicineOrderList: IMedicineOrder[] = [];
+  // @ts-ignore
+  medicineOrderList: IMedicineOrder[];
+
+  imageWidth = 50;
+  imageMargin = 1;
 
   constructor(private hospitalService: HospitalService) {
   }
@@ -24,7 +28,17 @@ export class PhysicianComponent implements OnInit {
       .subscribe((data: IMedicineOrder[]) => {
         this.medicineOrderList = data;
         console.log(this.medicineOrderList);
-      });
+      },
+        (error) => {
+          console.log(`Error: ${error}`);
+          this.medicineOrderList = [];
+        });
+  }
+
+  getRandomIntInclusive(min: number, max: number) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
   }
 
 }
