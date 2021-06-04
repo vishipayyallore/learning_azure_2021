@@ -36,6 +36,8 @@ namespace HospitalService.Data
         public string OrderStatus { get; set; } = "Pending";
 
         public string AdditionalComments { get; set; } = "Please approve";
+
+        public string PictureUrl { get; set; } = $"assets/images/Emp{new Random().Next(1, 6)}.png";
     }
 
 }

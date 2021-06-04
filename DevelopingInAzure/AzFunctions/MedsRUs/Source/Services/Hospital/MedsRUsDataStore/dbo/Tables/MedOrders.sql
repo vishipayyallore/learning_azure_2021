@@ -18,5 +18,6 @@
 	[AdditionalComments] [varchar](100) NULL,
 	[PharmacyTimeofApproval] [datetime2](7) NULL,
 	[PharmacyOrderStatus] [varchar](50) NULL,
-	[PharmacyAdditionalComments] [varchar](100) NULL,
+	[PharmacyAdditionalComments] [varchar](100) NULL, 
+    [PictureUrl] [varchar](50) DEFAULT 'assets/images/Emp1.png' NULL,
 )

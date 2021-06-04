@@ -81,6 +81,9 @@ namespace HospitalService.Repositories
                 command.Parameters.AddWithValue("@AdditionalComments",
                     medicineOrder.AdditionalComments).SqlDbType = SqlDbType.VarChar;
 
+                command.Parameters.AddWithValue("@PictureUrl",
+                    medicineOrder.PictureUrl).SqlDbType = SqlDbType.VarChar;
+
                 // Output
                 SqlParameter recordId = new SqlParameter
                 {
@@ -157,7 +160,9 @@ namespace HospitalService.Repositories
 
                         OrderStatus = dataReader.GetString(14),
 
-                        AdditionalComments = dataReader.GetString(15)
+                        AdditionalComments = dataReader.GetString(15),
+
+                        PictureUrl = dataReader.GetString(16)
                     };
                 }
             }
@@ -219,7 +224,9 @@ namespace HospitalService.Repositories
 
                                 OrderStatus = dataReader.GetString(14),
 
-                                AdditionalComments = dataReader.GetString(15)
+                                AdditionalComments = dataReader.GetString(15),
+
+                                PictureUrl = dataReader.GetString(16)
                             }
                             );
                     }

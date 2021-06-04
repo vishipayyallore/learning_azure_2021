@@ -19,6 +19,7 @@ export class PhysicianComponent implements OnInit {
   constructor(private hospitalService: HospitalService) {
   }
 
+
   ngOnInit(): void {
     this.loadPendingOrders();
   }

@@ -25,4 +25,9 @@ export interface IMedicineOrder {
     urgencyRanking: number;
 
     orderStatus: string;
+
+    pictureUrl: string;
+
+    additionalComments: string;
 }
+

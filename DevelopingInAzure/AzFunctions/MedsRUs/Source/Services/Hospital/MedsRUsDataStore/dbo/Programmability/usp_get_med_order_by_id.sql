@@ -8,7 +8,7 @@ BEGIN
 	SELECT
 		[Id], [PatientName] ,[PatientDOB] ,[PatientRoom] ,[AttendingPhysicianName] ,[EmployeeInitiatingOrder] 
 		,[IsPhysicianAssistant] ,[IsNurse] ,[MedicationName] ,[MedicationDosage] ,[MedicationFrequency] 
-		,[UrgencyRanking] ,[CreatedDateTime] ,[TimeofApproval] ,[OrderStatus] ,[AdditionalComments]
+		,[UrgencyRanking] ,[CreatedDateTime] ,[TimeofApproval] ,[OrderStatus] ,[AdditionalComments], [PictureUrl]
 	FROM
 		[dbo].[MedOrders] 
 	WHERE

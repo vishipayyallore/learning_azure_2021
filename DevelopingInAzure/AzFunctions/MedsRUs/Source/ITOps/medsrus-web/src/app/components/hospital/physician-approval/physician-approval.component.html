@@ -1,60 +1,45 @@
 <div class="card shadow mt-2 mb-2">
-    <div class="card-header">
-        <h2 class="PageTitle">Edit Order</h2>
-    </div>
-    <div class="card-body">
-        <!-- Form -->
-        <div class="col-md-8 mb-4 shadow px-2 py-2">
-            <form novalidate>
-                <!-- 
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">Id: </label>
-            <input type="text" formControlName="professorId" class="form-control element ml-4"
-              [(ngModel)]="professor.professorId" readonly>
-          </div>
-  
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">Name: </label>
-            <input type="text" formControlName="name" class="form-control element ml-4" [(ngModel)]="professor.name"
-              maxlength="50">
-          </div>
-  
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">DOJ: </label>
-            <input type="text" formControlName="doj" class="form-control element ml-4" [(ngModel)]="professor.doj"
-              maxlength="10" readonly>
-          </div>
-  
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">Teaches : </label>
-            <input type="text" formControlName="teaches" class="form-control element ml-4" [(ngModel)]="professor.teaches"
-              maxlength="50">
-          </div>
-  
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">Salary : </label>
-            <input type="number" formControlName="salary" class="form-control element ml-4" [(ngModel)]="professor.salary"
-              maxlength="50">
-          </div>
-  
-          <div class="form-group divflex labelAndTextbox">
-            <label class="element col-md-2">Is Phd : </label>
-            <div class="col-sm-1">
-              <input type="checkbox" formControlName="isPhd" class="form-control element ml-2"
-                [(ngModel)]="professor.isPhd">
-            </div>
-          </div> -->
+  <div class="card-header">
+    <h2 class="PageTitle">Edit Order</h2>
+  </div>
+  <div class="card-body">
+    <!-- Form -->
+    <div class="col-md-8 mb-4 shadow px-2 py-2" *ngIf="medicineOrder">
+      <form [formGroup]="medicineOrderForm" novalidate>
 
-                <div class="form-group divflex labelAndTextbox ml-3 mx-2 px-2">
-                    <button type="submit" class="btn btn-warning text-white shadow">
-                        <i class="fa fa-check" aria-hidden="true"></i> Approve</button>
-                        &nbsp;
-                    <button type="button" class="btn btn-danger ml-4 shadow" [routerLink]="['/professors']">
-                        <i class="fa fa-times" aria-hidden="true"></i> Reject</button>
-                </div>
-
-            </form>
+        <div class="form-group labelAndTextbox div-marginbottom">
+          <label class="element col-md-2">Id: </label>
+          <input type="text" formControlName="id" class="form-control element ml-4" [(ngModel)]="medicineOrder.id"
+            readonly>
         </div>
 
+        <div class="form-group labelAndTextbox div-marginbottom">
+          <label class="element col-md-2">Patient Name: </label>
+          <input type="text" formControlName="patientName" class="form-control element ml-4"
+            [(ngModel)]="medicineOrder.patientName" readonly>
+        </div>
+
+        <div class="form-group labelAndTextbox div-marginbottom">
+          <label class="element col-md-2">Medicine Name: </label>
+          <input type="text" formControlName="medicationName" class="form-control element ml-4"
+            [(ngModel)]="medicineOrder.medicationName" readonly>
+        </div>
+
+        <div class="form-group labelAndTextbox div-marginbottom">
+          <label class="element col-md-2">Comments: </label>
+          <input type="text" formControlName="additionalComments" class="form-control element ml-4"
+            [(ngModel)]="medicineOrder.additionalComments">
+        </div>
+
+        <div class="form-group labelAndTextbox div-marginbottom">
+          <button class="btn btn-primary text-white shadow" (click)="onApproveRejectOrder('Approved')">
+            <i class="fa fa-check" aria-hidden="true"></i> Approve</button>
+          <button type="button" class="btn btn-danger shadow button-marginleft" (click)="onApproveRejectOrder('Rejected')">
+            <i class="fa fa-times" aria-hidden="true"></i> Reject</button>
+        </div>
+
+      </form>
     </div>
+
+  </div>
 </div>

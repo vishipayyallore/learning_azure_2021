@@ -14,6 +14,7 @@
 	@TimeofApproval datetime2(7) = NULL,
 	@OrderStatus varchar(50) = 'Pending',
 	@AdditionalComments varchar(100) = '',
+	@PictureUrl varchar(50) = 'assets/images/Emp1.png',
     @Id uniqueidentifier output
 
 AS
@@ -27,11 +28,11 @@ BEGIN
 			([Id], [PatientName] ,[PatientDOB] ,[PatientRoom] ,[AttendingPhysicianName] 
 			 ,[EmployeeInitiatingOrder] ,[IsPhysicianAssistant] ,[IsNurse] ,[MedicationName] 
 			 ,[MedicationDosage] ,[MedicationFrequency] ,[UrgencyRanking] ,[CreatedDateTime] ,[TimeofApproval] 
-			 ,[OrderStatus] ,[AdditionalComments])
+			 ,[OrderStatus] ,[AdditionalComments], [PictureUrl])
      VALUES
            (@Id, @PatientName, @PatientDOB, @PatientRoom, @AttendingPhysicianName, @EmployeeInitiatingOrder
 		   , @IsPhysicianAssistant, @IsNurse, @MedicationName, @MedicationDosage, @MedicationFrequency
-		   , @UrgencyRanking, @CreatedDateTime, @TimeofApproval, @OrderStatus, @AdditionalComments);
+		   , @UrgencyRanking, @CreatedDateTime, @TimeofApproval, @OrderStatus, @AdditionalComments, @PictureUrl);
 
 END
 

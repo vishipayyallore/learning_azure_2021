@@ -23,7 +23,7 @@ namespace HospitalService
             _medicalSupplyOrderRepository = medicalSupplyOrderRepository ?? throw new ArgumentNullException(nameof(medicalSupplyOrderRepository));
         }
 
-        [FunctionName("MedicalSupplyOrdersForApproval")]
+        [FunctionName("GetMedicalSupplyOrdersForApproval")]
         public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "get", Route = null)] HttpRequest req,
             ILogger log)

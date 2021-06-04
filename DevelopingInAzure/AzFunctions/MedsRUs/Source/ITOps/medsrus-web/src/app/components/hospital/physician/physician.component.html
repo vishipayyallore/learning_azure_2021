@@ -32,8 +32,9 @@
                     <td>{{ pendingOrder.patientName }}</td>
                     <td>{{ pendingOrder.patientDOB | date}}</td>
                     <td>{{ pendingOrder.patientRoom }}</td>
-                    <td><img class="rounded-circle" src='assets/images/Emp{{getRandomIntInclusive(1, 6)}}.png' [title]='pendingOrder.employeeInitiatingOrder'
-                        [style.width.px]='imageWidth' [style.margin.px]='imageMargin' /></td>
+                    <td><img class="rounded-circle" [src]='pendingOrder.pictureUrl'
+                            [title]='pendingOrder.employeeInitiatingOrder' [style.width.px]='imageWidth'
+                            [style.margin.px]='imageMargin' /></td>
                     <td class="text-center"><i
                             class="fa {{ pendingOrder.isPhysicianAssistant ? 'fa-thumbs-up' : 'fa-thumbs-down'}} fa-2x"></i>
                     </td>
@@ -44,7 +45,7 @@
                     <td>{{ pendingOrder.urgencyRanking }}</td>
                     <td>{{ pendingOrder.orderStatus }}</td>
                     <td>
-                        <button type="button" class="btn btn-warning btn-sm move-right text-white"
+                        <button type="button" class="btn btn-warning btn-sm move-right text-white shadow"
                             [routerLink]="['/physician-approval', pendingOrder.id]">
                             <i class="fa fa-pencil fa-fw fa-lg" aria-hidden="true"></i></button>
                     </td>
