@@ -9,6 +9,11 @@
         <h2 class="PageTitle">Pending Orders List</h2>
     </div>
     <div class="card-body">
+        <div>
+            <a [routerLink]="['/add-order']" class="float">
+                <i class="fa fa-plus float-margintop"></i>
+            </a>
+        </div>
         <table class='table table-striped table-bordered table-hover shadow' aria-labelledby="tableLabel"
             *ngIf="medicineOrderList">
             <thead>
@@ -46,7 +51,7 @@
                     <td>{{ pendingOrder.orderStatus }}</td>
                     <td>
                         <button type="button" class="btn btn-warning btn-sm move-right text-white shadow"
-                            [routerLink]="['/physician-approval', pendingOrder.id]">
+                            [routerLink]="['/edit-order', pendingOrder.id]">
                             <i class="fa fa-pencil fa-fw fa-lg" aria-hidden="true"></i></button>
                     </td>
                 </tr>
