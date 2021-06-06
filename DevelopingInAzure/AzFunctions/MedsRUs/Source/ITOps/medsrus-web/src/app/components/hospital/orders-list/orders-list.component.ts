@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { HospitalService } from 'src/app/services/hospital.service';
-import { IMedicineOrder } from '../../../interfaces/imedicine-order';
+import { IMedicineOrder } from '../../../interfaces/IMedicineOrder';
 
 @Component({
     selector: 'app-orders-list',

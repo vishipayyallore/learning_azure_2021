@@ -2,8 +2,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
+import { IAddMedicineOrderDto } from '../interfaces/IAddMedicineOrderDto';
 
-import { IMedicineOrder } from '../interfaces/imedicine-order';
+import { IMedicineOrder } from '../interfaces/IMedicineOrder';
 import { IMedicineOrderApproval } from '../interfaces/IMedicineOrderApproval';
 
 const baseUrl = 'http://localhost:7071/api';
@@ -20,6 +21,19 @@ const httpOptions = {
 export class HospitalService {
 
   constructor(private httpClient: HttpClient) { }
+
+  //Add Medicine Order
+  AddMedicineOrder(addMedicineOrderDto: IAddMedicineOrderDto): Observable<IAddMedicineOrderDto> {
+
+    console.log(`Adding New Order: ${JSON.stringify(addMedicineOrderDto)}`);
+
+    return this.httpClient
+      .post<IAddMedicineOrderDto>(`${baseUrl}/RequestMedicalSupplyOrder`, JSON.stringify(addMedicineOrderDto), httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      )
+  }
 
   GetPendingOrders(): Observable<IMedicineOrder[]> {
     return this.httpClient

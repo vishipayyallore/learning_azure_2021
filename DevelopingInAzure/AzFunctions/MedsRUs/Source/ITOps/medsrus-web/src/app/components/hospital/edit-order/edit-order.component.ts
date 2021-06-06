@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { HospitalService } from 'src/app/services/hospital.service';
-import { IMedicineOrder } from '../../../interfaces/imedicine-order';
+import { IMedicineOrder } from '../../../interfaces/IMedicineOrder';
 import { IMedicineOrderApproval } from '../../../interfaces/IMedicineOrderApproval';
 
 @Component({
