@@ -3,9 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  hospitalServiceUrl: 'http://localhost:7071/api',
-  pharmacyServiceUrl: 'http://localhost:7072/api'
+	production: false,
+	hospitalServiceUrl_Azure: 'https://apim-YourProject.azure-api.net/hospitalservice',
+	pharmacyServiceUrl_Azure: 'https://apim-YourProject.azure-api.net/pharmacyservice',
+	information: 'YourKey',
+	hospitalServiceUrl: 'http://localhost:7071/api',
+	pharmacyServiceUrl: 'http://localhost:7072/api',
+	appInsights: {
+		instrumentationKey: 'YourInstrumentationKey'
+	}
 };
 
 /*

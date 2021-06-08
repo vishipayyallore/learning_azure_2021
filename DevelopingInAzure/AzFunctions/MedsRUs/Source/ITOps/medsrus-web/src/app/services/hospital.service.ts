@@ -9,9 +9,13 @@ import { IMedicineOrder } from '../interfaces/IMedicineOrder';
 import { IMedicineOrderApproval } from '../interfaces/IMedicineOrderApproval';
 
 const baseUrl = environment.hospitalServiceUrl;
+const key = environment.information;
+
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type': 'application/json',
+		'Ocp-Apim-Subscription-Key': key,
+		'Ocp-Apim-Trace': 'true',
 	}),
 };
 
@@ -37,14 +41,14 @@ export class HospitalService {
 
 	GetPendingOrders(): Observable<IMedicineOrder[]> {
 		return this.httpClient
-			.get<IMedicineOrder[]>(`${baseUrl}/GetMedicalSupplyOrdersForApproval`)
+			.get<IMedicineOrder[]>(`${baseUrl}/GetMedicalSupplyOrdersForApproval`, httpOptions)
 			.pipe(retry(1), catchError(this.errorHandler));
 	}
 
 	GetOrderById(id: string): Observable<IMedicineOrder> {
 		console.log(`Get Order By request received for ${id}`);
 		return this.httpClient
-			.get<IMedicineOrder>(`${baseUrl}/GetMedicalSupplyOrderById/${id}`)
+			.get<IMedicineOrder>(`${baseUrl}/GetMedicalSupplyOrderById/${id}`, httpOptions)
 			.pipe(retry(1), catchError(this.errorHandler));
 	}
 
