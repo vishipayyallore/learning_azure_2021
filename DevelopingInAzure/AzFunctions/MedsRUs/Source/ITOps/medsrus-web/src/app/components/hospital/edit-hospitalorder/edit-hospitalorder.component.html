@@ -1,0 +1,49 @@
+<div class="card shadow mt-2 mb-2">
+    <div class="card-header">
+        <h2 class="PageTitle">Edit Order</h2>
+    </div>
+    <div class="card-body">
+        <!-- Form -->
+        <div class="col-md-8 mb-4 shadow px-2 py-2" *ngIf="medicineOrder">
+            <form [formGroup]="medicineOrderForm" novalidate>
+
+                <div class="form-group labelAndTextbox div-marginbottom">
+                    <label class="element col-md-2">Id: </label>
+                    <input type="text" formControlName="id" class="form-control element ml-4"
+                        [(ngModel)]="medicineOrder.id" readonly>
+                </div>
+
+                <div class="form-group labelAndTextbox div-marginbottom">
+                    <label class="element col-md-2">Patient Name: </label>
+                    <input type="text" formControlName="patientName" class="form-control element ml-4"
+                        [(ngModel)]="medicineOrder.patientName" readonly>
+                </div>
+
+                <div class="form-group labelAndTextbox div-marginbottom">
+                    <label class="element col-md-2">Medicine Name: </label>
+                    <input type="text" formControlName="medicationName" class="form-control element ml-4"
+                        [(ngModel)]="medicineOrder.medicationName" readonly>
+                </div>
+
+                <div class="form-group labelAndTextbox div-marginbottom">
+                    <label class="element col-md-2">Comments: </label>
+                    <input type="text" formControlName="additionalComments" class="form-control element ml-4"
+                        [(ngModel)]="medicineOrder.additionalComments">
+                </div>
+
+                <div class="form-group labelAndTextbox div-marginbottom">
+                    <button class="btn btn-primary text-white shadow" (click)="onApproveRejectOrder('Approved')"
+                        title="Approve">
+                        <i class="fa fa-check fa-2x" aria-hidden="true"></i> </button>
+                    <button type="button" class="btn btn-danger shadow button-marginleft"
+                        (click)="onApproveRejectOrder('Rejected')" title="Reject">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i> </button>
+                    <button type="button" class="btn btn-maincolor button-marginleft shadow text-white" [routerLink]="['/hospitalorders']"
+                        title="Hospital Orders"> <i class="fa fa-list fa-2x"></i> </button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>

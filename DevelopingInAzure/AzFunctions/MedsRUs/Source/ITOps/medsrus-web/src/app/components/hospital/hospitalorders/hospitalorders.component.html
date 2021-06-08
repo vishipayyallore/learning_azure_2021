@@ -1,0 +1,62 @@
+<div class="container" *ngIf="!medicineOrderList">
+    <h1 class="spinner">Loading Pending Orders ...</h1>
+    <span class="spinner">
+        <i class="fa fa-spinner fa-spin fa-4x"></i>
+    </span>
+</div>
+<div class="card mt-2 mb-2" *ngIf="medicineOrderList">
+    <div class="card-header">
+        <h2 class="PageTitle">Pending Orders List</h2>
+    </div>
+    <div class="card-body">
+        <div>
+            <a [routerLink]="['/add-hospitalorder']" class="float" title="Add Order">
+                <i class="fa fa-plus float-margintop"></i>
+            </a>
+        </div>
+        <table class='table table-striped table-bordered table-hover shadow' aria-labelledby="tableLabel"
+            *ngIf="medicineOrderList">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>DOB</th>
+                    <th>Room</th>
+                    <th>Raised By</th>
+                    <th>Physician Assistant</th>
+                    <th>Nurse</th>
+                    <th>Medication</th>
+                    <th>Dosage</th>
+                    <th>Frequency</th>
+                    <th>Urgency</th>
+                    <th>Status</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pendingOrder of medicineOrderList">
+                    <td>{{ pendingOrder.patientName }}</td>
+                    <td>{{ pendingOrder.patientDOB | date}}</td>
+                    <td>{{ pendingOrder.patientRoom }}</td>
+                    <td><img class="rounded-circle" [src]='pendingOrder.pictureUrl'
+                            [title]='pendingOrder.employeeInitiatingOrder' [style.width.px]='imageWidth'
+                            [style.margin.px]='imageMargin' /></td>
+                    <td class="text-center"><i
+                            class="fa {{ pendingOrder.isPhysicianAssistant ? 'fa-thumbs-up' : 'fa-thumbs-down'}} fa-2x"></i>
+                    </td>
+                    <td><i class="fa {{ pendingOrder.isNurse ? 'fa-thumbs-up' : 'fa-thumbs-down'}} fa-2x"></i></td>
+                    <td>{{ pendingOrder.medicationName }}</td>
+                    <td>{{ pendingOrder.medicationDosage }}</td>
+                    <td>{{ pendingOrder.medicationFrequency }}</td>
+                    <td>{{ pendingOrder.urgencyRanking }}</td>
+                    <td>{{ pendingOrder.orderStatus }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm move-right text-white shadow"
+                            [routerLink]="['/edit-hospitalorder', pendingOrder.id]" title="Edit Order">
+                            <i class="fa fa-pencil fa-2x" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>

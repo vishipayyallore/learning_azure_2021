@@ -4,11 +4,10 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-import { IAddMedicineOrderDto } from '../interfaces/IAddMedicineOrderDto';
-import { IMedicineOrder } from '../interfaces/IMedicineOrder';
-import { IMedicineOrderApproval } from '../interfaces/IMedicineOrderApproval';
+import { IPharmacyMedicineOrder } from '../interfaces/IPharmacyMedicineOrder';
+import { IPharmacyMedicineOrderApproval } from '../interfaces/IPharmacyMedicineOrderApproval';
 
-const baseUrl = environment.hospitalServiceUrl;
+const baseUrl = environment.pharmacyServiceUrl;
 const httpOptions = {
 	headers: new HttpHeaders({
 		'Content-Type': 'application/json',
@@ -18,43 +17,30 @@ const httpOptions = {
 @Injectable({
 	providedIn: 'root'
 })
-export class HospitalService {
+export class PharmacyService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	//Add Medicine Order
-	AddMedicineOrder(addMedicineOrderDto: IAddMedicineOrderDto): Observable<IAddMedicineOrderDto> {
-
-		console.log(`Adding New Order: ${JSON.stringify(addMedicineOrderDto)}`);
-
+	GetAllOrdersPharmacyForApproval(): Observable<IPharmacyMedicineOrder[]> {
 		return this.httpClient
-			.post<IAddMedicineOrderDto>(`${baseUrl}/RequestMedicalSupplyOrder`, JSON.stringify(addMedicineOrderDto), httpOptions)
-			.pipe(
-				retry(1),
-				catchError(this.errorHandler)
-			)
-	}
-
-	GetPendingOrders(): Observable<IMedicineOrder[]> {
-		return this.httpClient
-			.get<IMedicineOrder[]>(`${baseUrl}/GetMedicalSupplyOrdersForApproval`)
+			.get<IPharmacyMedicineOrder[]>(`${baseUrl}/GetAllOrdersForApproval`)
 			.pipe(retry(1), catchError(this.errorHandler));
 	}
 
-	GetOrderById(id: string): Observable<IMedicineOrder> {
-		console.log(`Get Order By request received for ${id}`);
+	GetOrderById(patientName: string, orderId: string): Observable<IPharmacyMedicineOrder> {
+		console.log(`Get Order By request received for ${orderId}`);
 		return this.httpClient
-			.get<IMedicineOrder>(`${baseUrl}/GetMedicalSupplyOrderById/${id}`)
+			.get<IPharmacyMedicineOrder>(`${baseUrl}/GetSingleOrderForApproval/${patientName}/${orderId}`)
 			.pipe(retry(1), catchError(this.errorHandler));
 	}
 
-	UpdateOrderById(medicineOrderApproval: IMedicineOrderApproval) {
+	UpdateOrderById(medicineOrderApproval: IPharmacyMedicineOrderApproval) {
 		console.log(
 			`Update Order request received for ${JSON.stringify(medicineOrderApproval)}`
 		);
 		return this.httpClient
-			.post<IMedicineOrderApproval>(
-				`${baseUrl}/ApproveMedicalSupplyOrder`,
+			.post<IPharmacyMedicineOrderApproval>(
+				`${baseUrl}/UpdatePharmacyOrder/${medicineOrderApproval.patientName}/${medicineOrderApproval.id}`,
 				JSON.stringify(medicineOrderApproval),
 				httpOptions
 			)
@@ -74,5 +60,4 @@ export class HospitalService {
 		console.log(errorMessage);
 		return throwError(errorMessage);
 	}
-
 }

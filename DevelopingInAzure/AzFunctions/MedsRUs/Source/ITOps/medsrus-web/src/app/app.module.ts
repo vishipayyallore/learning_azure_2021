@@ -9,10 +9,11 @@ import { TopNavbarComponent } from './components/shared/top-navbar/top-navbar.co
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { PageNotfoundComponent } from './components/shared/page-notfound/page-notfound.component';
 import { DashboardComponent } from './components/home/dashboard/dashboard.component';
-import { StaffComponent } from './components/pharmacy/staff/staff.component';
-import { OrdersListComponent } from './components/hospital/orders-list/orders-list.component';
-import { AddOrderComponent } from './components/hospital/add-order/add-order.component';
-import { EditOrderComponent } from './components/hospital/edit-order/edit-order.component';
+import { HospitalOrdersComponent } from './components/hospital/hospitalorders/hospitalorders.component';
+import { AddHospitalOrderComponent } from './components/hospital/add-hospitalorder/add-hospitalorder.component';
+import { EditHospitalOrderComponent } from './components/hospital/edit-hospitalorder/edit-hospitalorder.component';
+import { PharmacyordersComponent } from './components/pharmacy/pharmacyorders/pharmacyorders.component';
+import { EditPharmacyorderComponent } from './components/pharmacy/edit-pharmacyorder/edit-pharmacyorder.component';
 
 @NgModule({
 	declarations: [
@@ -21,10 +22,11 @@ import { EditOrderComponent } from './components/hospital/edit-order/edit-order.
 		FooterComponent,
 		PageNotfoundComponent,
 		DashboardComponent,
-		StaffComponent,
-		OrdersListComponent,
-		AddOrderComponent,
-		EditOrderComponent
+		HospitalOrdersComponent,
+		AddHospitalOrderComponent,
+		EditHospitalOrderComponent,
+		PharmacyordersComponent,
+		EditPharmacyorderComponent
 	],
 	imports: [
 		BrowserModule,
