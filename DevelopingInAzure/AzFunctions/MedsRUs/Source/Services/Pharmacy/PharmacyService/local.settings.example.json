@@ -1,6 +1,10 @@
 {
+  "Host": {
+    "CORS": "*"
+  },
   "IsEncrypted": false,
   "Values": {
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "Your_APPINSIGHTS_Key",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "CosmosDBConnection": "YourCosmosDbConnectionString",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",

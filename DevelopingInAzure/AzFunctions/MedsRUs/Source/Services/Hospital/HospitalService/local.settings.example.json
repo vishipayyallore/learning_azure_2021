@@ -1,11 +1,13 @@
 {
-  "ConnectionStrings": {
-    "SQLAZURECONNSTR_SqlServerConnection": "YourSQLDatabaseConnectionString"
+  "Host": {
+    "CORS": "*"
   },
   "IsEncrypted": false,
   "Values": {
+    "APPINSIGHTS_INSTRUMENTATIONKEY": "AppInsights_Guid",
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet",
-    "ServiceBusConnection": "YourServiceBusConnectionString"
+    "ServiceBusConnection": "YourServiceBusConnectionString",
+    "SQLAZURECONNSTR_SqlServerConnection": "YourSQLDatabaseConnectionString"
   }
 }

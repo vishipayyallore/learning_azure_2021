@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.ServiceBus;
@@ -13,10 +12,10 @@ using System.Threading.Tasks;
 
 namespace PharmacyService
 {
-    public static class UpdatePharmacyOrder
+    public class UpdatePharmacyOrder
     {
         [FunctionName("UpdatePharmacyOrder")]
-        public static async Task<IActionResult> Run(
+        public async Task<IActionResult> Run(
             [HttpTrigger(AuthorizationLevel.Function, "post",
             Route = "UpdatePharmacyOrder/{partitionKey}/{id}")] HttpRequest req,
             [CosmosDB(databaseName: "MedsRUsDataStore", collectionName: "MedOrders", ConnectionStringSetting = "CosmosDBConnection"
@@ -29,7 +28,7 @@ namespace PharmacyService
 
             log.LogInformation($"Medicine Order from Cosmos Db: {medicineOrder}");
 
-            if(medicineOrder == null)
+            if (medicineOrder == null)
             {
                 return new NotFoundResult();
             }
