@@ -1,7 +1,6 @@
 RGName="rg-practice-dev-001"
 LocationName="EastUS"
-BaseName="vmmay2021"
-VmName="ubuntu$(echo $BaseName)" 
+VmName="ubuntu$(echo $RANDOM)" 
 username="demouser"
 ImageName="UbuntuLTS" 
 
@@ -37,3 +36,6 @@ logout
 
 ##### View the site.
 http://$publicIp"
+
+##### Delete the Resource Group
+az group delete --name $RGName
