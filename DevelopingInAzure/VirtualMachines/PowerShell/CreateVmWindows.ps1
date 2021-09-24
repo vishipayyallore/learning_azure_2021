@@ -26,7 +26,7 @@ Get-AzSubscription
 
 Get-AzVm
 
-Get-AzResourceGroup
+Get-AzResourceGroup | Format-Table
 New-AzResourceGroup -Name $RGName -Location $LocationName -Tag @{environment="dev"; Contact="Swamy"}
 
 $CredentialsForVm = New-Object System.Management.Automation.PSCredential ($username, $password)
