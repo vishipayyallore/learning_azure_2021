@@ -9,8 +9,6 @@ $SubNetName = "default"
 $NsgName = "nsg$($BaseName)"
 $PublicDns = "publicdns$($BaseName)$(Get-Random)"
 $PortsToOpen = 80, 3389
-$username = 'demouser'
-$password = ConvertTo-SecureString 'ToBeDone' -AsPlainText -Force
 $ImageName = "Win2019Datacenter" 
 
 ##### For Help
@@ -29,6 +27,8 @@ Get-AzVm
 Get-AzResourceGroup | Format-Table
 New-AzResourceGroup -Name $RGName -Location $LocationName -Tag @{environment="dev"; Contact="Swamy"}
 
+$username = 'demouser'
+$password = ConvertTo-SecureString 'NoPassword@1' -AsPlainText -Force
 $CredentialsForVm = New-Object System.Management.Automation.PSCredential ($username, $password)
 
 New-AzVm -ResourceGroupName $RGName -Name $VmName -Location $LocationName `

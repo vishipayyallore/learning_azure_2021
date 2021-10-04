@@ -72,14 +72,19 @@ $vmConfig = New-AzVMConfig -VMName $VmName -VMSize "Standard_D1_v2" | `
   Add-AzVMNetworkInterface -Id $nic.Id
 
 # Configure the SSH key
-$sshPublicKey = cat C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa.pub
+# $sshPublicKey = cat C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa.pub ## When On Local Laptop
+$sshPublicKey = cat /home/pk_viswanatha-swamy/.ssh/id_rsa.pub ## When inside Azure Cloud Shell
 Add-AzVMSshPublicKey -VM $vmconfig -KeyData $sshPublicKey -Path "/home/demouser/.ssh/authorized_keys"
 
 New-AzVM -ResourceGroupName $RGName -Location $LocationName -VM $vmConfig
 
 Get-AzPublicIpAddress -ResourceGroupName $RGName -Name $PublicDns | Select-Object IpAddress
 
-> ssh -i C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa demouser@VmPublicIpAddress
+> ssh -i C:\Users\PK.Viswanatha-Swamy\.ssh\id_rsa demouser@VmPublicIpAddress ## From Local Laptop
+> ssh -i /home/pk_viswanatha-swamy/.ssh/id_rsa demouser@VmPublicIpAddress ## From Local Laptop
+
+ssh -i /home/pk_viswanatha-swamy/.ssh/id_rsa demouser@40.77.1.129
+
 
 ##### Inside the Ubuntu VM
 ```
