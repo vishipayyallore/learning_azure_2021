@@ -1,6 +1,6 @@
 # Variables
 $SubscriptionName = "SwamyPKV VSPS"
-$RGName = "rg-az204-pswindows-dev-001"
+$RGName = "rg-az204-webapps-reactor-001"
 $LocationName = "EastUS"
 $BaseName = "apr2021win"
 $VmName = "vm$($BaseName)"
@@ -33,6 +33,12 @@ $CredentialsForVm = New-Object System.Management.Automation.PSCredential ($usern
 
 New-AzVm -ResourceGroupName $RGName -Name $VmName -Location $LocationName `
     -Credential $CredentialsForVm -Image $ImageName `
+    -VirtualNetworkName $VNetName -SubnetName $SubNetName -SecurityGroupName $NsgName `
+    -PublicIpAddressName $PublicDns -OpenPorts $PortsToOpen
+
+
+New-AzVm -ResourceGroupName $RGName -Name $VmName -Location $LocationName `
+    -Credential (Get-Credential) -Image $ImageName `
     -VirtualNetworkName $VNetName -SubnetName $SubNetName -SecurityGroupName $NsgName `
     -PublicIpAddressName $PublicDns -OpenPorts $PortsToOpen
 
